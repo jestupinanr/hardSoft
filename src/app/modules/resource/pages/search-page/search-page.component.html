@@ -1,0 +1,43 @@
+<div class="container">
+  <img src="../../../../../assets/images/lupa.png" alt="lupa" class="lupa"/>
+  <div class="title">
+    <span class="material-icons">
+      devices
+    </span>
+    <span>Consultar recursos</span>
+  </div>
+
+  <div class="container-search">
+    <input type="text" class="input-search" placeholder="Buscar recursos" />
+    <div class="button-container">
+      <button class="button-primary button-size">Buscar</button>
+      <button class="button-secondary button-size">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="container-result">
+    <div class="filter-item-search">
+      <span class="letter-filter">A</span>
+      <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail">
+        <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
+          <div class="icon-search">
+            H
+          </div>
+          <div class="information-search">
+            <span>name</span>
+            <span>tipo</span>
+          </div>
+          <div class="options-search">
+            <span class="material-icons">
+              edit
+            </span>
+            <span class="material-icons">
+              delete
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

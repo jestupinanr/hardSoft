@@ -1,0 +1,38 @@
+{
+  "data": [{
+    "id" : 1,
+    "name" : "computador portail HP",
+    "tipo" : "pc",
+    "marca" : "HP",
+    "description" : "pc HP traido de segunda mano desde alkosto",
+    "dateEntry": "12/09/2022",
+    "dateRecommended": "12/09/2025"
+  },
+  {
+    "id" : 2,
+    "name" : "computador portail Lenovo",
+    "tipo" : "pc",
+    "marca" : "Lenovo",
+    "description" : "pc HP traido de segunda mano desde alkosto",
+    "dateEntry": "12/09/2022",
+    "dateRecommended": "12/09/2025"
+  },
+  {
+    "id" : 3,
+    "name" : "Celular empleado",
+    "tipo" : "movil",
+    "marca" : "Xiaomi",
+    "description" : "celular para prestar a los empleados en caso que se requiera",
+    "dateEntry": "12/09/2022",
+    "dateRecommended": "12/09/2024"
+  },
+  {
+    "id" : 4,
+    "name" : "impresora laser",
+    "tipo" : "imp",
+    "marca" : "HP",
+    "description" : "impresora para diferentes areas de la empresa",
+    "dateEntry": "12/09/2022",
+    "dateRecommended": "12/09/2028"
+  }]
+}

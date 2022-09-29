@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="header">
+    <span>Logo</span>
+    <span class="material-icons sidebar-menuicon">menu</span>
+  </div>
+  <div>
+    <ul class="list-container">
+      <li *ngFor="let item of itemSideBar" >
+        <div class="item-sidebar" (click)="onShowHideItem(item)">
+          <div class="item-title">
+            <span class="material-icons icon-size">
+              {{item.icon}}
+            </span>
+            {{item.name}}
+          </div>
+          <div>
+            <span class="material-icons icon-size">
+              {{item.open ? 'expand_less' : 'expand_more'}}
+            </span>
+          </div>
+        </div>
+        <div *ngIf="item.open">
+          <ul class="item-childrens">
+            <li *ngFor="let children of item.children">
+              <span routerLink="{{children.url}}">
+                {{children.name}}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
