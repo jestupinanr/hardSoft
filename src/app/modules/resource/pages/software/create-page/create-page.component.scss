@@ -45,7 +45,13 @@
         width: 50%;
       }
     }
-
+    .group-form-half{
+      display: flex;
+      width: 50%;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+    
     .button{
       display: flex;
       justify-content: center;

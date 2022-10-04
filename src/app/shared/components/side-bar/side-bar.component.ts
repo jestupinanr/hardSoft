@@ -33,16 +33,19 @@ export class SideBarComponent implements OnInit {
         ]
       },
       {
-        name: "Personal",
+        name: "Usuarios",
         open: false,
         icon: "person",
         children: [
           {
-            name: "Buscar personal"
+            name: "Crear usuario",
+            url: '/person/create/person'
           },
           {
-            name: "Crear Personal"
+            name: "Buscar usuario",
+            url: '/person/search'
           }
+          
         ]
       },
       {
