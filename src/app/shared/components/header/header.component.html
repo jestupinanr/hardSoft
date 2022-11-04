@@ -11,7 +11,12 @@
       <span class="role">Administrador</span>
     </div>
     <div class="container-image-profile">
-      <img src="../../../../assets/vectors/profilePreterminate.svg" alt="profileImage" />
+      <img src="../../../../assets/vectors/profilePreterminate.svg" alt="profileImage" (click)="onShowHideMenu()"/>
+      <div *ngIf="openProfileMenu" class="container-account">
+        <ul>
+          <li routerLink="/auth/login">Cerrar sesion</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

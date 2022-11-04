@@ -6,11 +6,11 @@
     </span>
     <span>Agregar Software</span>
   </div>
-  <div class="container-form">
+  <form class="container-form">
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Nombre del software</label>
-        <input class="input-text-form" type="text" placeholder="Ingrese el nombre del software"/>
+        <input class="input-text-form" formControlName="nameSoftware" type="text" placeholder="Ingrese el nombre del software"/>
       </div>
       <div class="group-form-half">
       <div class="form-group">
@@ -24,32 +24,32 @@
       </div>
       <div class="form-group">
         <label class="label-form"> Tipo</label>
-        <input class="input-text-form" type="text" placeholder="Ingrese el tipo de software"/>
+        <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de software"/>
       </div>
     </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Marca</label>
-          <input class="input-text-form" type="text" placeholder="Ingrese la marca del equipo"/>
+          <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo"/>
       </div>
       <div class="form-group">
         <label class="label-form"> Numero de licencia</label>
-        <input class="input-text-form" type="text" placeholder="Ingrese el numero"/>
+        <input class="input-text-form" formControlName="licenseNumber" type="text" placeholder="Ingrese el numero"/>
       </div>
     </div>
     <div class="form-group">
       <label class="label-form"> Observaciones</label>
-      <textarea class="text-text-form" placeholder="Ingrese la observacion del equipo"></textarea>
+      <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observacion del equipo"></textarea>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Fecha de creacion</label>
-        <input class="input-text-form" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        <input class="input-text-form" formControlName="creationDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
       </div>
       <div class="form-group">
         <label class="label-form"> Estado asignacion </label>
-        <select class="input-text-form" type="text">
+        <select class="input-text-form" formControlName="assigmentStatus" type="text">
           <option value="" disabled selected hidden>seleccione la asignacion</option>
           <option value="a">persona 1</option>
           <option value="a">persona 2</option>
@@ -60,5 +60,5 @@
     <div class="button">
       <button class="button-primary"> Agregar </button>
     </div>
-  </div>
+  </form>
 </div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="container-block">
+    <div class="left-side">
+      <img src="../../../../../assets/images/backgroundLogin.png" class="bg-login"/>
+      <img src="../../../../../assets/images/phoneLogin.png" class="phone-login" />
+      <img src="../../../../../assets/images/handsLogin.png" class="hands-login"/>
+    </div>
+    <div class="rigth-side">
+      <div class="header-option">
+          <span class="header-selected">Iniciar sesion</span>
+          <span>o</span>
+          <span class="header-not-selected" routerLink="/auth/register">Registarte</span>
+      </div>
+      <form [formGroup]="formLogin" ((ngSubmit)="onSubmit($event)" class="form-login">
+        <div class="form-control">
+          <label>Correo Electronico:</label>
+          <input type="text" formControlName="email" placeholder="Ingrese correo electronico">
+        </div>
+        <div class="form-control">
+          <label>Contraseña:</label>
+          <input type="text" formControlName="password" placeholder="Ingresa tu contraseña">
+        </div>
+        <div class="button-container">
+          <button routerLink="/">Entrar</button>
+          <span routerLink="/auth/recovery-password">Olvide mi contraseña</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

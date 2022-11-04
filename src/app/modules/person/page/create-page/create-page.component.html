@@ -6,32 +6,31 @@
       </span>
       <span>Agregar Usuario</span>
     </div>
-    <div class="container-form">
+    <form class="container-form" [formGroup]="formCreatePerson">
       <div class="group-form">
         <div class="form-group">
-          <label class="label-form">Nombres</label>
-          <input class="input-text-form" type="text" placeholder="Ingrese el nombre"/>
+          <label class="label-form">Nombre completo</label>
+          <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre"/>
         </div>
         <div class="form-group">
-          <label class="label-form">Apellidos</label>
-          <input class="input-text-form" type="text" placeholder="Ingrese el apellido"/>
+          <label class="label-form">Correo</label>
+          <input class="input-text-form" formControlName="email" type="text" placeholder="Ingrese el apellido"/>
         </div>
       </div>
       <div class="group-form">
         <div class="form-group">
-          <label class="label-form">Cedula</label>
-            <input class="input-text-form" type="text" placeholder=""/>
+          <label class="label-form">Numero de identificación</label>
+            <input class="input-text-form" formControlName="nit" type="text" placeholder=""/>
         </div>
         <div class="form-group">
-          <label class="label-form">Celular</label>
-          <input class="input-text-form" type="text" placeholder="Ingrese el modelo del equipo"/>
+          <label class="label-form">Telefono</label>
+          <input class="input-text-form" formControlName="phone" type="text" placeholder="Ingrese el modelo del equipo"/>
         </div>
       </div>
       <div class="group-form">
-      <div class="group-form-half">
         <div class="form-group">
           <label class="label-form">Rol</label>
-          <select class="input-text-form" type="text">
+          <select class="input-text-form" formControlName="rol" type="text">
             <option value="" disabled selected hidden>Seleccione el rol</option>
             <option value="a">Administrador</option>
             <option value="a">Coordinador</option>
@@ -39,19 +38,14 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="label-form">Cargo</label>
-          <input class="input-text-form" type="text" placeholder=""/>
+          <label class="label-form"> Direccion</label>
+          <input class="text-text-form" formControlName="address" placeholder="Ingrese la direccion y detalles"/>
         </div>
       </div>
-      <div class="form-group">
-        <label class="label-form"> Direccion</label>
-        <textarea class="text-text-form" placeholder="Ingrese la direccion y detalles"></textarea>
-      </div>
-    </div>
       <div class="group-form">
         <div class="form-group">
           <label class="label-form"> Fecha de nacimiento</label>
-          <input class="input-text-form" type="date" placeholder="Seleccione la fecha de ingreso"/>
+          <input class="input-text-form" formControlName="bornDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
         </div>
         <div class="group-form-half">
         <div class="form-group">
@@ -68,6 +62,6 @@
       <div class="button">
         <button class="button-primary"> Agregar </button>
       </div>
-    </div>
+    </form>
   </div>
   

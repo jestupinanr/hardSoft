@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  openProfileMenu: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onShowHideMenu ():void {
+    this.openProfileMenu = !this.openProfileMenu;
   }
 
 }
