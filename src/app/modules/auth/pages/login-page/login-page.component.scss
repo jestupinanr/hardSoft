@@ -6,9 +6,9 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  padding: 2rem 0 2rem 0;
 
   .container-block {
-    margin: 2rem 0 2rem 0;
     background-color: #36465D;
     border-radius: 20px;
     display: flex;
@@ -18,8 +18,14 @@
     .left-side{
       width: 50%;
       position: relative;
+      display: none;
+      @media screen and (min-width: 900px) {
+        display: block;
+      }
+
       .bg-login {
         height: 100%;
+        width: 100%;
       }
       .phone-login {
         position: absolute;
@@ -36,13 +42,24 @@
     }
 
     .rigth-side {
-      width: 50%;
-      margin-top: 3rem;
-      padding-right: 4rem;
+      width: 100%;
+      padding: 0rem 1.5rem;
+      @media screen and (min-width: 900px) {
+        width: 50%;
+        margin-top: 3rem;
+        padding-right: 4rem;
+      }
       .header-option {
         color: #FFFFFF;
+        width: 100%;
         display: flex;
-        gap: 1rem;
+        justify-content: space-between;
+        padding-top: 1rem;
+        @media screen and (min-width: 900px) {
+          gap: 1rem;
+          justify-content: start;
+          padding: 0rem;
+        }
 
         .header-selected {
           padding-bottom: 1rem;
@@ -93,6 +110,17 @@
           }
         }
         .button-container {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          justify-content: center;
+          align-items: center;
+
+          @media screen and (min-width: 900px) {
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+          }
           button {
             background-color: var(--color-primary);
             padding: 1rem 3rem;
@@ -104,7 +132,6 @@
           }
           span {
             cursor: pointer;
-            margin-left: 3rem;
             color: rgba(255, 255, 255, 0.5);
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             font-size: small;

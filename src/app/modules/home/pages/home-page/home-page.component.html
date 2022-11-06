@@ -1,5 +1,8 @@
-<app-side-bar></app-side-bar>
 <app-header></app-header>
-<div class="container-all-content">
-  <router-outlet></router-outlet>
+<div class="container-all">
+  <app-side-bar (messageFather)="getStatusSideBar($event)"></app-side-bar>
+  <div class="container-all-content" [ngClass]="statusSideBar ? 'w-75' : 'w-90'">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+

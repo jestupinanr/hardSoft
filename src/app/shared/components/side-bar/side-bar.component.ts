@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SideBarModel } from '@core/models/sidebar.model';
 
 @Component({
@@ -8,6 +8,9 @@ import { SideBarModel } from '@core/models/sidebar.model';
 })
 export class SideBarComponent implements OnInit {
   itemSideBar: SideBarModel[] = [];
+  showNavBar : boolean = false;
+  @Output()
+  messageFather: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -83,6 +86,11 @@ export class SideBarComponent implements OnInit {
       if (originalItem.name === item.name)
         originalItem.open = !originalItem.open
     })
+  }
+
+  showHideSidebar():void {
+    this.showNavBar = !this.showNavBar;
+    this.messageFather.emit(this.showNavBar)
   }
 
 }

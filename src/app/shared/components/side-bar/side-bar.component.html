@@ -1,28 +1,30 @@
-<div class="container">
+<div [ngClass]="showNavBar ? 'sidebar-hidden' : 'container' ">
   <div class="header">
-    <span>Logo</span>
-    <span class="material-icons sidebar-menuicon">menu</span>
+    <span [ngClass]="showNavBar ? 'hidden' : '' ">Logo</span>
+    <span class="material-icons sidebar-menuicon" (click)="showHideSidebar()">menu</span>
   </div>
   <div>
     <ul class="list-container">
       <li *ngFor="let item of itemSideBar" >
         <div class="item-sidebar" (click)="onShowHideItem(item)">
           <div class="item-title">
-            <span class="material-icons icon-size">
+            <span class="material-icons icon-size" (click)="showNavBar && showHideSidebar()">
               {{item.icon}}
             </span>
-            {{item.name}}
+            <span [ngClass]="showNavBar ? 'hidden pointer' : 'pointer' ">
+              {{item.name}}
+            </span>
           </div>
           <div>
-            <span class="material-icons icon-size">
+            <span [ngClass]="showNavBar ? 'hidden pointer' : 'material-icons icon-size pointer'">
               {{item.open ? 'expand_less' : 'expand_more'}}
             </span>
           </div>
         </div>
-        <div *ngIf="item.open">
+        <div *ngIf="item.open" [ngClass]="showNavBar ? 'hidden' : '' ">
           <ul class="item-childrens">
             <li *ngFor="let children of item.children">
-              <span routerLink="{{children.url}}">
+              <span routerLink="{{children.url}}" class="pointer">
                 {{children.name}}
               </span>
             </li>
