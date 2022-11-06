@@ -1,6 +1,23 @@
-.container-all-content{
-  margin-left: 17.1rem;
-  min-height: 100vh;
-  background-image: url('../../../../../assets/images/background.png');
+.container-all {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .container-all-content{
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-image: url('../../../../../assets/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .w-75 {
+    margin-left: 4rem;
+  }
+  .w-90 {
+    margin-left: 14.1rem;
+  }
 }
+
 

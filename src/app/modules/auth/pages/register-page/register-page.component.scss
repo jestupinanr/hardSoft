@@ -1,0 +1,156 @@
+.container{
+    background-image: url('../../../../../assets/images/backgroundAuth.png');
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  
+    .container-block {
+      margin: 2rem 0 2rem 0;
+      background-color: #36465D;
+      border-radius: 20px;
+      display: flex;
+      width: 90%;
+      height: 90%;
+  
+      .left-side{
+        width: 50%;
+        position: relative;
+        display: none;
+        @media screen and (min-width: 900px) {
+          display: block;
+        }
+        .bg-login {
+          height: 100%;
+          width: 100%;
+        }
+        .phone-login {
+          position: absolute;
+          top: 12rem;
+          left: 0rem;
+          width: 80%;
+        }
+        .hands-login {
+          position: absolute;
+          top: 16rem;
+          left: 6rem;
+          width: 12rem;
+        }
+      }
+  
+      .rigth-side {
+        width: 100%;
+        padding: 0rem 1.5rem;
+        @media screen and (min-width: 900px) {
+          width: 50%;
+          margin-top: 3rem;
+          padding-right: 4rem;
+        }
+        .header-option {
+          color: #FFFFFF;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding-top: 1rem;
+          @media screen and (min-width: 900px) {
+            gap: 1rem;
+            justify-content: start;
+            padding: 0rem;
+          }
+  
+          .header-selected {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-primary);
+            cursor: pointer;
+          }
+  
+          .header-not-selected {
+            opacity: 50%;
+            cursor: pointer;
+          }
+        }
+        .form-login {
+          margin-top: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          .form-control {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            label {
+              color: var(--text-white);
+              font-weight: 800;
+            }
+            input {
+              border: none;
+              border-bottom: 1px solid var(--color-primary);
+              background-color: transparent;
+              height: 3rem;
+              color: white;
+            }
+  
+            input::placeholder {
+              color: rgba(255, 255, 255, 0.25);
+              opacity: 1;
+            }
+            
+            input:-ms-input-placeholder {
+              color: rgba(255, 255, 255, 0.25);
+            }
+            
+            input::-ms-input-placeholder {
+              color: rgba(255, 255, 255, 0.25);
+            }
+            input:focus{
+              outline: none;
+            }
+          }
+
+          .form-control-select {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            label {
+              color: var(--text-white);
+              font-weight: 800;
+            }
+            select {
+                border: none;
+                border-radius: 20px;
+                height: 2rem;
+            }
+          }
+
+          .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @media screen and (min-width: 900px) {
+              flex-direction: row;
+              justify-content: start;
+              align-items: center;
+            }
+            button {
+              background-color: var(--color-primary);
+              padding: 1rem 3rem;
+              border: none;
+              border-radius: 3rem;
+              color: var(--text-white);
+              font-weight: 800;
+              cursor: pointer;
+            }
+            span {
+              cursor: pointer;
+              margin-left: 3rem;
+              color: rgba(255, 255, 255, 0.5);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+              font-size: small;
+            }
+          }
+        }
+      }
+    }
+  }

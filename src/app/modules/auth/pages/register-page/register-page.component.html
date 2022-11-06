@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="container-block">
+      <div class="left-side">
+        <img src="../../../../../assets/images/backgroundLogin.png" class="bg-login"/>
+        <img src="../../../../../assets/images/phoneLogin.png" class="phone-login" />
+        <img src="../../../../../assets/images/handsLogin.png" class="hands-login"/>
+      </div>
+      <div class="rigth-side">
+        <div class="header-option">
+            <span class="header-not-selected" routerLink="/auth/login">Iniciar sesion</span>
+            <span>o</span>
+            <span class="header-selected">Registarte</span>
+        </div>
+        <form [formGroup]="formRegister" class="form-login">
+          <div class="form-control">
+            <label>Nombre completo:</label>
+            <input type="text" formControlName="email" placeholder="Ingrese correo electronico">
+          </div>
+          <div class="form-control">
+            <label>Correo Electronico:</label>
+            <input type="text" formControlName="password" placeholder="Ingresa tu contraseña">
+          </div>
+          <div class="form-control">
+            <label>Contraseña:</label>
+            <input type="text" formControlName="password" placeholder="Ingresa tu contraseña">
+          </div>
+          <div class="form-control-select">
+            <label>¿Cual es tu rol?</label>
+            <select></select>
+          </div>
+          <div class="button-container">
+            <button>Crear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -5,6 +5,7 @@ import { PersonRoutingModule } from './person-routing.module';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { CreatePageComponent } from './page/create-page/create-page.component';
 import { DetailPageComponent } from './page/detail-page/detail-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { DetailPageComponent } from './page/detail-page/detail-page.component';
   ],
   imports: [
     CommonModule,
-    PersonRoutingModule
+    PersonRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class PersonModule { }

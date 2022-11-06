@@ -6,45 +6,59 @@
     </span>
     <span>Agregar Hardware</span>
   </div>
-  <div class="container-form">
+  <form class="container-form" [formGroup]="formCreateHardware">
     <div class="group-form">
       <div class="form-group">
-        <label class="label-form"> Nombre del Producto</label>
-        <input class="input-text-form" type="text" placeholder="Ingrese el nombre del producto"/>
+        <label class="label-form"> Nombre del equipo</label>
+        <input class="input-text-form" formControlName="nameHardware" type="text" placeholder="Ingrese el nombre del equipo"/>
       </div>
       <div class="form-group">
-        <label class="label-form"> Tipo </label>
-        <select class="input-text-form" type="text">
+        <label class="label-form"> Estado equipo  </label>
+        <select class="input-text-form" type="text" formControlName="hardwareStatus">
           <option value="" disabled selected hidden>Ingrese el tipo del producto</option>
-          <option value="a">prueba</option>
+          <option value="a">Buen estado</option>
+          <option value="a">Pendiente arreglo</option>
+          <option value="a">Dañado</option>
         </select>
       </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Marca</label>
-        <select class="input-text-form" type="text">
-          <option value="" disabled selected hidden>Seleccione la marca del producto</option>
-          <option value="a">prueba</option>
-        </select>
+        <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo"/>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="label-form"> Marca</label>
-      <textarea class="text-text-form" placeholder="Ingrese el detalle del producto"></textarea>
+      <div class="form-group">
+        <label class="label-form"> Modelo</label>
+        <input class="input-text-form" formControlName="model" type="text" placeholder="Ingrese el modelo del equipo"/>
+      </div>
     </div>
     <div class="group-form">
       <div class="form-group">
-        <label class="label-form"> Fecha de ingreso</label>
-        <input class="input-text-form" type="text" placeholder="Seleccione la fecha de ingreso"/>
+        <label class="label-form">Tipo</label>
+        <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de equipo"/>
       </div>
       <div class="form-group">
-        <label class="label-form"> Tiempo recomendado </label>
-        <input class="input-text-form" type="text" placeholder="Seleccione fecha recomendada para actualizar"/>
+        <label class="label-form"> Observaciones</label>
+        <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observacion del equipo"></textarea>
+      </div>
+    </div>
+    <div class="group-form">
+      <div class="form-group">
+        <label class="label-form"> Fecha de creacion</label>
+        <input class="input-text-form" formControlName="creationDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+      </div>
+      <div class="form-group">
+        <label class="label-form"> Estado asignacion </label>
+        <select class="input-text-form" formControlName="assignmentStatus" type="text">
+          <option value="" disabled selected hidden>seleccione la asignacion</option>
+          <option value="a">persona 1</option>
+          <option value="a">persona 2</option>
+          <option value="a">persona 3</option>
+        </select>
       </div>
     </div>
     <div class="button">
       <button class="button-primary"> Agregar </button>
     </div>
-  </div>
+  </form>
 </div>

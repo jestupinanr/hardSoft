@@ -3,6 +3,7 @@
   right: 0;
   top: 0.5rem;
   margin-right: 1rem;
+  z-index: 1000;
 
   .container-items{
     display: flex;
@@ -57,10 +58,41 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      cursor: pointer;
       img {
         object-fit: contain;
         width: 2.5rem;
         height: 2.5rem;
+        cursor: pointer;
+      }
+      .container-account {
+        position: absolute;
+        background-color: var(--color-third);
+        width: 14rem;
+        top: 4rem;
+        right: 0rem;
+        border-radius: 20px;
+        z-index: 20;
+        color: var(--text-white);
+        ul {
+          list-style-type: none; 
+          display: flex;
+          flex-direction: column;
+          margin: 0%;
+          padding: 0%;
+          gap: 2rem;
+          width: 100%;
+          li {
+            padding: 1rem 10px;
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 0%;
+          }
+          li:hover {
+            background-color: #4e596b;
+          }
+        }
       }
     }
   }

@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     SideBarComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[
     SideBarComponent,
-    HeaderComponent
+    HeaderComponent,
   ]
 })
 export class SharedModule { }
