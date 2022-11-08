@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { GeneratePageComponent} from './generate-page/generate-page.component';
+const routes: Routes = [
+  {
+    path: 'create/report',
+    component: GeneratePageComponent,
+  },
+  {
+    path: "**",
+    redirectTo: "/report"
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

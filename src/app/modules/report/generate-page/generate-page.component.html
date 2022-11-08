@@ -1,1 +1,49 @@
-<p>generate-page works!</p>
+<div class="container">
+    <img src="../../../../../../assets/images/pencil.png" alt="pencil" class="pencil"/>
+    <div class="title">
+      <span class="material-icons">
+        menu_book
+      </span>
+      <span>Generar informe</span>
+    </div>
+    <form class="container-form" [formGroup]="formCreateGenerate">
+      <div class="group-form">
+        <div class="form-group">
+          <label class="label-form">Fecha inicio</label>
+          <input class="input-text-form" formControlName="bornDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        </div>      
+        <div class="form-group">
+          <label class="label-form">Fecha fin</label>
+          <input class="input-text-form" formControlName="bornDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        </div>
+        </div>
+
+        
+       <div class="group-form">
+       
+        <div class="form-group">
+          <label class="label-form">Informe</label>
+          <select class="input-text-form" formControlName="rol" type="text">
+            <option value="" disabled selected hidden>Seleccione el tipo de informe</option>
+            <option value="a">Usuarios</option>
+            <option value="a">Hardware</option>
+            <option value="a">Sofware</option>
+            <option value="a">Incidentes</option>
+            <option value="a">Asignaciones</option>
+            <option value="a">Notificaciones</option>
+          </select>
+        </div>
+        </div>
+        <div class="group-form">  
+       </div>
+       <div class="button">
+        <button class="button-primary"> 
+          <span class="material-icons">
+            download
+          </span>
+          Descargar </button>
+      </div>
+    </form>
+  </div>
+  
+

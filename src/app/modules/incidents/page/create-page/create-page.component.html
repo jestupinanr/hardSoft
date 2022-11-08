@@ -1,0 +1,73 @@
+<div class="container">
+    <img src="../../../../../../assets/images/pencil.png" alt="pencil" class="pencil"/>
+    <div class="title">
+      <span class="material-icons">
+        menu_book
+      </span>
+      <span>Agregar Incidente</span>
+    </div>
+    <form class="container-form" [formGroup]="formCreateIncident">
+      <div class="group-form">
+        <div class="form-group">
+          <label class="label-form">Cedula</label>
+          <input class="input-text-form" formControlName="name" type="number" placeholder="Ingrese la cedula"/>
+        </div>
+        <div class="form-group">
+          <label class="label-form">Estado incidente</label>
+          <select class="input-text-form" formControlName="rol" type="text">
+            <option value="" disabled selected hidden>Seleccione el estado incidente</option>
+            <option value="a">Nuevo</option>
+            <option value="a">Resuelto</option>
+            <option value="a">Cancelado</option>
+            <option value="a">En progreso</option>
+          </select>
+        </div>
+      </div>
+      <div class="group-form">
+        <div class="form-group">
+          <label class="label-form"> Descripcion</label>
+          <textarea class="text-text-form" formControlName="observations" placeholder="Ingresar la descripcion del incidente"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="label-form">Estado de asingnacion incidente</label>
+          <select class="input-text-form" formControlName="rol" type="text">
+            <option value="" disabled selected hidden>Seleccione la cedula</option>
+            <option value="a">1234</option>
+            <option value="a">4321</option>
+            <option value="a">00000</option>
+            <option value="a">1112233</option>
+          </select>
+        </div>
+      </div>
+      <div class="group-form">
+        <div class="group-form-half">
+          <div class="form-group">
+          <label class="label-form"> Nombre </label>
+          <span>XXXX_XXXX</span>
+         </div>
+         <div class="form-group">
+          <label class="label-form"> Apellido </label>
+          <span>XXXX_XXXXX</span>
+        </div>
+      </div>
+      <div class="group-form">
+        <div class="form-group">
+          <label class="label-form"> Usuario </label>
+           <span>aaaa</span>
+        </div>
+          <div class="form-group">
+           <label class="label-form">Rol</label>
+            <span>usuario</span>
+         </div>
+         <div class="form-group">
+          <label class="label-form"> Cargo </label>
+          <span>bbbbb</span>
+        </div>
+      </div>
+      </div>
+      <div class="button">
+        <button class="button-primary"> Agregar </button>
+      </div>
+    </form>
+  </div>
+  

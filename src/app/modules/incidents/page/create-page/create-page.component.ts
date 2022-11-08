@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
-  selector: 'app-generate-page',
-  templateUrl: './generate-page.component.html',
-  styleUrls: ['./generate-page.component.scss']
+  selector: 'app-create-page',
+  templateUrl: './create-page.component.html',
+  styleUrls: ['./create-page.component.scss']
 })
-export class GeneratePageComponent implements OnInit {
- 
-  public formCreateGenerate: FormGroup = new FormGroup({});
+export class CreatePageComponent implements OnInit {
+
+  public formCreateIncident: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder
     ) { 
@@ -19,7 +20,7 @@ export class GeneratePageComponent implements OnInit {
   }
 
   initFormParent(): void {
-    this.formCreateGenerate = new FormGroup({
+    this.formCreateIncident = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5)]),
       cedula: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -29,11 +30,8 @@ export class GeneratePageComponent implements OnInit {
       bornDate: new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
 
-    this.formCreateGenerate.valueChanges.subscribe(value => {
+    this.formCreateIncident.valueChanges.subscribe(value => {
       console.log(value);
     })
   }
 }
-
-
-

@@ -52,29 +52,44 @@ export class SideBarComponent implements OnInit {
         ]
       },
       {
+        name: "Incidentes",
+        open: false,
+        icon: "menu_book",
+        children: [
+          {
+            name: "Crear incidencias",
+            url: '/incident/create/incident'
+          },
+          {
+            name: "Ver incidencias",
+            url: '/incident/search'
+          }
+        ]
+      },
+      {
         name: "Asignaciones",
         open: false,
         icon: "menu_book",
         children: [
           {
-            name: "Asignar recursos"
+            name: "Crear Asignacion",
+            url: '/incident/create/incident'
           },
           {
-            name: "Crear incidencias"
-          },
-          {
-            name: "Ver incidencias"
+            name: "Ver Asignaciones",
+            url: '/incident/search'
           }
         ]
       },
       {
-        name: "Reportes",
+        name: "Informes",
         open: false,
         icon: "description",
         children: [
           {
-            name: "Generar reporte"
-          },
+            name: "Generar informes",
+            url: '/report/create/report'
+          }
         ]
       },
     ];
