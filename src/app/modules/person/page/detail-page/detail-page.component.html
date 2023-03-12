@@ -1,1 +1,98 @@
-<p>detail-page works!</p>
+<div class="container">
+    <div class="title">
+      <span class="material-icons">
+        visibility
+      </span>
+      <span>Ver persona</span>
+    </div>
+  
+    <div class="basic-information">
+      <div class="icon">
+        <img src="../../../../../assets/vectors/profilePreterminate.svg"/>
+      </div>
+      <div class="information">
+        <span>name</span>
+        <span>Cargo</span>
+      </div>
+      <div class="status">
+        Administrador
+      </div>
+    </div>
+  
+    <div class="container-float">
+      <div class="container-information-float w-100">
+        <div class="title-contain-information">
+          <span>Información basica</span>
+        </div>
+        <div class="basic-info">
+          <div>
+            <ul>
+              <li class="item-basic">
+                <span class="material-icons">
+                  mail
+                </span>
+                Lorem@LoremIp.com
+              </li>
+              <li class="item-basic">
+                <span class="material-icons">
+                  call
+                </span>
+                57811151428
+              </li>
+              <li class="item-basic">
+                <span class="material-icons">
+                  badge
+                </span>
+                1026593589
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li class="item-basic">
+                <span class="material-icons">
+                  cake
+                </span>
+                16/05/2000
+              </li>
+              <li class="item-basic">
+                <span class="material-icons">
+                  calendar_month
+                </span>
+                21 Años
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container-float">
+      <div class="container-information-float w-100">
+        <div class="title-contain-information">
+          <span>Recursos asignados</span>
+        </div>
+        <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail">
+          <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
+            <div class="icon-search">
+              S
+            </div>
+            <div class="information-search">
+             <span class="information-col">Nombre</span>
+            </div>
+            <div class="options-search">
+              <span class="material-icons">
+                edit
+              </span>
+              <span class="material-icons">
+                delete
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>
+  

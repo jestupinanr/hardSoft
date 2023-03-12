@@ -97,16 +97,21 @@
             color: rgba(255, 255, 255, 0.25);
             opacity: 1;
           }
-          
+
           input:-ms-input-placeholder {
             color: rgba(255, 255, 255, 0.25);
           }
-          
+
           input::-ms-input-placeholder {
             color: rgba(255, 255, 255, 0.25);
           }
           input:focus{
             outline: none;
+          }
+          .alert{
+            color: #DF2F44;
+            font-size: 14px;
+            font-weight: 800;
           }
         }
         .button-container {

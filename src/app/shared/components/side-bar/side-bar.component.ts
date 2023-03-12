@@ -42,7 +42,7 @@ export class SideBarComponent implements OnInit {
         children: [
           {
             name: "Crear usuario",
-            url: '/person/create/person'
+            url: '/person/create'
           },
           {
             name: "Buscar usuario",

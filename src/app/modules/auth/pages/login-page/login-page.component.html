@@ -11,17 +11,22 @@
           <span>o</span>
           <span class="header-not-selected" routerLink="/auth/register">Registarte</span>
       </div>
-      <form [formGroup]="formLogin" ((ngSubmit)="onSubmit($event)" class="form-login">
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit($event)" class="form-login">
         <div class="form-control">
           <label>Correo Electronico:</label>
-          <input type="text" formControlName="email" placeholder="Ingrese correo electronico">
+          <input type="text" formControlName="email" placeholder="Ingrese correo electronico" required>
+          <div *ngIf="formLogin.controls['email'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formLogin.controls['email'].errors">
+            Ingresa el email correctamente
+          </div>
         </div>
+      </div>
         <div class="form-control">
           <label>Contraseña:</label>
-          <input type="password" formControlName="password" placeholder="Ingresa tu contraseña">
+          <input type="password" formControlName="password" placeholder="Ingresa tu contraseña" required>
         </div>
         <div class="button-container">
-          <button routerLink="/">Entrar</button>
+          <button type="submit">Entrar</button>
           <span routerLink="/auth/recovery-password">Olvide mi contraseña</span>
         </div>
       </form>

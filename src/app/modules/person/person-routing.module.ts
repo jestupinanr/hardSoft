@@ -6,7 +6,7 @@ import { DetailPageComponent } from './page/detail-page/detail-page.component';
 
 const routes: Routes = [
   {
-    path: 'create/person',
+    path: 'create',
     component: CreatePageComponent,
   },
   {
