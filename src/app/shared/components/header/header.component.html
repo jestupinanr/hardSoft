@@ -7,14 +7,14 @@
       </div>
     </div>
     <div class="header-data">
-      <span class="name">Usuario</span>
-      <span class="role">Administrador</span>
+      <span class="name">{{userName}}</span>
+      <span class="role">{{roleName}}</span>
     </div>
     <div class="container-image-profile">
       <img src="../../../../assets/vectors/profilePreterminate.svg" alt="profileImage" (click)="onShowHideMenu()"/>
       <div *ngIf="openProfileMenu" class="container-account">
         <ul>
-          <li routerLink="/auth/login">Cerrar sesion</li>
+          <li (click)="logOut()">Cerrar sesion</li>
         </ul>
       </div>
     </div>

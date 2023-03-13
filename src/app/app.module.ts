@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

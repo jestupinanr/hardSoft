@@ -6,19 +6,22 @@
     </span>
     <span>Agregar Hardware</span>
   </div>
-  <form class="container-form" [formGroup]="formCreateHardware">
+  <form class="container-form" [formGroup]="formCreateHardware" (ngSubmit)="onSubmit($event)">
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Nombre del equipo</label>
-        <input class="input-text-form" formControlName="nameHardware" type="text" placeholder="Ingrese el nombre del equipo"/>
+        <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre del equipo"/>
+        <div *ngIf="formCreateHardware.controls['name'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['name'].errors">
+            El nombre debe tener mas de 5 caracteres
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="label-form"> Estado equipo  </label>
         <select class="input-text-form" type="text" formControlName="hardwareStatus">
           <option value="" disabled selected hidden>Ingrese el tipo del producto</option>
-          <option value="a">Buen estado</option>
-          <option value="a">Pendiente arreglo</option>
-          <option value="a">Dañado</option>
+          <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
         </select>
       </div>
     </div>
@@ -47,18 +50,9 @@
         <label class="label-form"> Fecha de creacion</label>
         <input class="input-text-form" formControlName="creationDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
       </div>
-      <div class="form-group">
-        <label class="label-form"> Estado asignacion </label>
-        <select class="input-text-form" formControlName="assignmentStatus" type="text">
-          <option value="" disabled selected hidden>seleccione la asignacion</option>
-          <option value="a">persona 1</option>
-          <option value="a">persona 2</option>
-          <option value="a">persona 3</option>
-        </select>
-      </div>
     </div>
     <div class="button">
-      <button class="button-primary"> Agregar </button>
+      <button class="button-primary" type="submit"> Agregar </button>
     </div>
   </form>
 </div>

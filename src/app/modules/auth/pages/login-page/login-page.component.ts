@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +15,12 @@ export class LoginPageComponent implements OnInit {
   public formLogin: FormGroup = new FormGroup({});
   public pushSubmit: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private service: AuthService, private router:Router) {
+  constructor(
+    private service: AuthService,
+    private router:Router,
+    private toastr: ToastrService,
+    private cookieService: CookieService
+    ) {
     this.initFormParent();
 
   }
@@ -38,10 +45,13 @@ export class LoginPageComponent implements OnInit {
       const value = this.formLogin.value;
       this.service.login(value).subscribe(
         (res) => {
-          localStorage.setItem('user', JSON.stringify(res))
+          console.log(res);
+         this.cookieService.set('token', res.token, 1, '/')
+         this.cookieService.set('userName', res.user.name, 1, '/')
+         this.cookieService.set('roleName', res.user.role.name, 1, '/')
           this.router.navigate(['/']);
         }, (error) => {
-          console.log(error);
+          this.toastr.error('Email o contraseña incorrecta');
         }
       )
     }

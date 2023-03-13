@@ -13,8 +13,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  public login (dataLogin: login): Observable<User> {
-    return this.http.post<User>(`${this.API_HARDSOFT}auth/login`, {
+  public login (dataLogin: login): Observable<{user: User , token: string}> {
+    return this.http.post<{user: User , token: string}>(`${this.API_HARDSOFT}auth/login`, {
       ...dataLogin
     })
   }
