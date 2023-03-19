@@ -6,7 +6,7 @@
       </span>
       <span>Consultar usuarios</span>
     </div>
-  
+
     <div class="container-search">
       <input type="text" class="input-search" placeholder="Buscar usuario" />
       <div class="button-container">
@@ -14,19 +14,19 @@
         <button class="button-secondary button-size">Limpiar</button>
       </div>
     </div>
-  
+
     <div class="container-result">
       <div class="filter-item-search">
         <span class="letter-filter">A</span>
-        <div *ngFor="let item of [1,2,3,4]" routerLink="/person/detail">
-          <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
+        <div *ngFor="let item of users" (click)="hanldeRedirect(item)">
+          <div class="item-search">
             <div class="icon-search">
-              H
+              {{item.name.slice(0, 1)}}
             </div>
             <div class="information-search">
-             <span class="information-col">Nombre</span>
-              <span class="information-col">tipo</span>
-              <span class="information-col">asd</span>
+              <span class="information-col">{{item.name}} {{item.lastName}}</span>
+              <span class="information-col">{{item.nit}}</span>
+              <span class="information-col">{{item.role.name}}</span>
             </div>
             <div class="options-search">
               <span class="material-icons">
@@ -39,7 +39,6 @@
           </div>
         </div>
       </div>
-  
+
     </div>
   </div>
-  

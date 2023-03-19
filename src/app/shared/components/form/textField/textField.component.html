@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label class="label-form"> Nombre del equipo</label>
+  <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre del equipo" [(ngModel)]="hardware.name" required/>
+  <div *ngIf="formCreateHardware.controls['name'].invalid && pushSubmit" class="alert">
+    <div *ngIf="formCreateHardware.controls['name'].errors">
+      El nombre debe tener mas de 5 caracteres
+    </div>
+  </div>
+</div>

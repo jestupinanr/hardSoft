@@ -1,0 +1,99 @@
+.header{
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  margin-right: 1rem;
+  z-index: 1000;
+
+  .container-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .container-notification{
+      position: relative;
+
+      .icon-notification{
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .notification-counter{
+        position: absolute;
+        top: 1.5rem;
+        right: -0.3rem;
+        border-radius: 100%;
+        width: 1.2rem;
+        height: 1.2rem;
+        font-size: var(--text-xs);
+        color: var(--text-white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-primary);
+      }
+
+
+    }
+
+    .header-data{
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      color: var(--text-white);
+      .name {
+        font-size: var(--text-md);
+      }
+      .role {
+        font-size: var(--text-xs);
+      }
+    }
+
+    .container-image-profile{
+      width: 3.3rem;
+      height: 3.3rem;
+      border-radius: 100%;
+      background-color: var(--text-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      img {
+        object-fit: contain;
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+      }
+      .container-account {
+        position: absolute;
+        background-color: var(--color-third);
+        width: 14rem;
+        top: 4rem;
+        right: 0rem;
+        border-radius: 20px;
+        z-index: 20;
+        color: var(--text-white);
+        ul {
+          list-style-type: none; 
+          display: flex;
+          flex-direction: column;
+          margin: 0%;
+          padding: 0%;
+          gap: 2rem;
+          width: 100%;
+          li {
+            padding: 1rem 10px;
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 0%;
+          }
+          li:hover {
+            background-color: #4e596b;
+          }
+        }
+      }
+    }
+  }
+}

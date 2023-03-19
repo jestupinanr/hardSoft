@@ -1,70 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CreateHardware, CreateSoftware, StatusResource } from '@core/models/resource/Resource.model';
+import { ToastrService } from 'ngx-toastr';
+import { ResourceService } from 'src/app/services/resource.service';
 
 @Component({
-  selector: 'app-create-page',
+  selector: 'app-create-software',
   templateUrl: './create-page.component.html',
   styleUrls: ['./create-page.component.scss']
 })
-
 export class CreatePageComponent implements OnInit {
 
-  public formCreateHardware: FormGroup = new FormGroup({});
+  public formCreateSoftware: FormGroup = new FormGroup({});
+  public pushSubmit: boolean = false;
+  public status: StatusResource[] = []
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(
+    private resourceService: ResourceService,
+    private toastr: ToastrService,
+    private router:Router
+    ) {
     this.initFormParent();
-    
   }
 
   ngOnInit(): void {
+    this.getStatus()
   }
 
-  initFormParent(): void {
-    this.formCreateHardware = new FormGroup({
-      nameHardware: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      hardwareStatus: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      brand: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      model: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      mac: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      type: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      observations: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      creationDate: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      assignmentStatus: new FormControl('', [Validators.required]),
-    });
+  getStatus(): void {
+    this.resourceService.getStatus().subscribe(
+      (res) => {
+        this.status = res;
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    );
+  }
 
-    this.formCreateHardware.valueChanges.subscribe(value => {
-      console.log(value);
-    })
+  createSoftware(software: CreateSoftware): void {
+    this.resourceService.createSoftware(software).subscribe(
+      (res) => {
+        this.toastr.success('Software correctamente creado');
+        this.router.navigate(['/resource/detail', res.id]);
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    );
+  }
+
+
+  initFormParent(): void {
+    this.formCreateSoftware = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      status: new FormControl('', [Validators.required]),
+      brand: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      licenseNumber: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      type: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      observations: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      acquisitionDate: new FormControl('', [Validators.required]),
+    });
+  }
+
+  onSubmit(event: Event): void {
+    this.pushSubmit = true;
+    if (this.formCreateSoftware.valid) {
+      event.preventDefault();
+      const value: CreateSoftware = this.formCreateSoftware.value;
+      this.createSoftware(value);
+    }
   }
 
 }
-// export class CreatePageComponent implements OnInit {
-
-//   public formCreateSoftware: FormGroup = new FormGroup({});
-
-//   constructor(private formBuilder: FormBuilder) { 
-//     this.initFormParent();
-    
-//   }
-
-//   ngOnInit(): void {
-//   }
-
-//   initFormParent(): void {
-//     this.formCreateSoftware = new FormGroup({
-//       nameSoftware: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       softwareStatus: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       type: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       brand: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       licenseNumber: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       observations: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       creationDate: new FormControl('', [Validators.required, Validators.minLength(5)]),
-//       assignmentStatus: new FormControl('', [Validators.required]),
-//     });
-
-//     this.formCreateSoftware.valueChanges.subscribe(value => {
-//       console.log(value);
-//     })
-//   }
-
-// }

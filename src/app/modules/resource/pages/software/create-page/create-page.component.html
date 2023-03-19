@@ -6,59 +6,83 @@
     </span>
     <span>Agregar Software</span>
   </div>
-  <form class="container-form">
+  <form class="container-form" [formGroup]="formCreateSoftware" (ngSubmit)="onSubmit($event)">
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Nombre del software</label>
-        <input class="input-text-form" formControlName="nameSoftware" type="text" placeholder="Ingrese el nombre del software"/>
+        <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre del software" required/>
+        <div *ngIf="formCreateSoftware.controls['name'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateSoftware.controls['name'].errors">
+            El nombre debe tener mas de 5 caracteres
+          </div>
+        </div>
       </div>
       <div class="group-form-half">
-      <div class="form-group">
-        <label class="label-form"> Estado equipo </label>
-        <select class="input-text-form" type="text">
-          <option value="" disabled selected hidden>Seleccione el estado</option>
-          <option value="a">Buen estado</option>
-          <option value="a">Pendiente arreglo</option>
-          <option value="a">Dañado</option>
-        </select>
+        <div class="form-group">
+          <label class="label-form"> Estado </label>
+          <select class="input-text-form" type="text" formControlName="status">
+            <option value="" disabled selected hidden>Seleccione el estado</option>
+            <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div *ngIf="formCreateSoftware.controls['status'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateSoftware.controls['status'].errors">
+              Debes seleccionar un item del selector
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label-form"> Tipo</label>
+          <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de software"/>
+          <div *ngIf="formCreateSoftware.controls['type'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateSoftware.controls['type'].errors">
+              El tipo debe tener mas de 2 caracteres
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="label-form"> Tipo</label>
-        <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de software"/>
-      </div>
-    </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Marca</label>
           <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo"/>
+          <div *ngIf="formCreateSoftware.controls['brand'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateSoftware.controls['brand'].errors">
+              La marca debe tener mas de 2 caracteres
+            </div>
+          </div>
       </div>
       <div class="form-group">
         <label class="label-form"> Numero de licencia</label>
         <input class="input-text-form" formControlName="licenseNumber" type="text" placeholder="Ingrese el numero"/>
+        <div *ngIf="formCreateSoftware.controls['licenseNumber'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateSoftware.controls['licenseNumber'].errors">
+            El numero de licencia debe tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
       <label class="label-form"> Observaciones</label>
       <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observacion del equipo"></textarea>
+      <div *ngIf="formCreateSoftware.controls['observations'].invalid && pushSubmit" class="alert">
+        <div *ngIf="formCreateSoftware.controls['observations'].errors">
+          Las observaciones deben de tener mas de 2 caracteres
+        </div>
+      </div>
     </div>
     <div class="group-form">
       <div class="form-group">
-        <label class="label-form"> Fecha de creacion</label>
-        <input class="input-text-form" formControlName="creationDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
-      </div>
-      <div class="form-group">
-        <label class="label-form"> Estado asignacion </label>
-        <select class="input-text-form" formControlName="assigmentStatus" type="text">
-          <option value="" disabled selected hidden>seleccione la asignacion</option>
-          <option value="a">persona 1</option>
-          <option value="a">persona 2</option>
-          <option value="a">persona 3</option>
-        </select>
+        <label class="label-form"> Fecha de adquisición</label>
+        <input class="input-text-form" formControlName="acquisitionDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        <div *ngIf="formCreateSoftware.controls['acquisitionDate'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateSoftware.controls['acquisitionDate'].errors">
+            Debes seleccionar una fecha de creación
+          </div>
+        </div>
       </div>
     </div>
     <div class="button">
-      <button class="button-primary"> Agregar </button>
+      <button class="button-primary" type="submit"> Agregar </button>
     </div>
   </form>
 </div>

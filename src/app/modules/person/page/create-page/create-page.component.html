@@ -6,62 +6,108 @@
       </span>
       <span>Agregar Usuario</span>
     </div>
-    <form class="container-form" [formGroup]="formCreatePerson">
+    <form class="container-form" [formGroup]="formCreatePerson" (ngSubmit)="onSubmit($event)">
       <div class="group-form">
         <div class="form-group">
-          <label class="label-form">Nombre completo</label>
+          <label class="label-form">Nombres</label>
           <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre"/>
+          <div *ngIf="formCreatePerson.controls['name'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['name'].errors">
+              El nombre debe de tener mas de 2 caracteres
+            </div>
+          </div>
         </div>
         <div class="form-group">
-          <label class="label-form">Correo</label>
-          <input class="input-text-form" formControlName="email" type="text" placeholder="Ingrese el correo"/>
+          <label class="label-form">Apellidos</label>
+          <input class="input-text-form" formControlName="lastName" type="text" placeholder="Ingrese los apellidos"/>
+          <div *ngIf="formCreatePerson.controls['lastName'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['lastName'].errors">
+              El apellido debe de tener mas de dos caracteres
+            </div>
+          </div>
         </div>
       </div>
       <div class="group-form">
         <div class="form-group">
           <label class="label-form">Numero de identificación</label>
-            <input class="input-text-form" formControlName="nit" type="text" placeholder=""/>
+            <input class="input-text-form" formControlName="nit" type="text" placeholder="Ingrese el numero de identificación"/>
+            <div *ngIf="formCreatePerson.controls['nit'].invalid && pushSubmit" class="alert">
+              <div *ngIf="formCreatePerson.controls['nit'].errors">
+                El NIT debe de tener mas de 5 caracteres
+              </div>
+            </div>
         </div>
         <div class="form-group">
+          <label class="label-form">Correo</label>
+          <input class="input-text-form" formControlName="email" type="text" placeholder="Ingrese el correo"/>
+          <div *ngIf="formCreatePerson.controls['email'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['email'].errors">
+              El correo debe ser correcto
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="group-form">
+        <div class="form-group">
           <label class="label-form">Telefono</label>
-          <input class="input-text-form" formControlName="phone" type="text" placeholder="Ingrese el modelo del equipo"/>
+          <input class="input-text-form" formControlName="phone1" type="text" placeholder="Ingrese el numero telefonico"/>
+          <div *ngIf="formCreatePerson.controls['phone1'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['phone1'].errors">
+              El telefono debe de tener mas de 8 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label-form"> Direccion</label>
+          <input class="text-text-form" formControlName="address" placeholder="Ingrese la direccion "/>
+          <div *ngIf="formCreatePerson.controls['address'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['address'].errors">
+              La dirección debe de tener mas de  6 caracteres
+            </div>
+          </div>
         </div>
       </div>
       <div class="group-form">
         <div class="form-group">
           <label class="label-form">Rol</label>
-          <select class="input-text-form" formControlName="rol" type="text">
-            <option value="" disabled selected hidden>Seleccione el rol</option>
-            <option value="a">Administrador</option>
-            <option value="a">Coordinador</option>
-            <option value="a">Asesor</option>
+          <select class="input-text-form" formControlName="role" type="text">
+            <option value="" disabled selected hidden>Seleccione un rol</option>
+            <option *ngFor="let item of roles" [value]="item.id">{{item.name}}</option>
           </select>
+          <div *ngIf="formCreatePerson.controls['role'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['role'].errors">
+              Debes seleccionar un rol
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="label-form"> Direccion</label>
-          <input class="text-text-form" formControlName="address" placeholder="Ingrese la direccion y detalles"/>
-        </div>
-      </div>
-      <div class="group-form">
         <div class="form-group">
           <label class="label-form"> Fecha de nacimiento</label>
           <input class="input-text-form" formControlName="bornDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+          <div *ngIf="formCreatePerson.controls['bornDate'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreatePerson.controls['bornDate'].errors">
+              Debes seleccionar una fecha de nacimiento
+            </div>
+          </div>
         </div>
-        <div class="group-form-half">
-        <div class="form-group">
-          <label class="label-form"> Usuario </label>
-          <span>usuario</span>
-        </div>
-        <div class="form-group">
-          <label class="label-form"> Contraseña </label>
-          <span>H2d9lr6g</span>
-         
-        </div>
+        <!-- <div class="group-form-half">
+          <div class="form-group">
+            <label class="label-form"> Usuario </label>
+            <span>usuario</span>
+          </div>
+          <div class="form-group">
+            <label class="label-form"> Contraseña </label>
+            <span>H2d9lr6g</span>
+          </div>
+        </div> -->
       </div>
+      <div class="group-form">
+        <div class="form-group">
+          <label class="label-form"> Contraseña</label>
+          <input class="text-text-form" formControlName="password" placeholder="Ingrese la contraseña" type="password"/>
+        </div>
       </div>
       <div class="button">
-        <button class="button-primary"> Agregar </button>
+        <button class="button-primary" type="submit"> Agregar </button>
       </div>
     </form>
   </div>
-  

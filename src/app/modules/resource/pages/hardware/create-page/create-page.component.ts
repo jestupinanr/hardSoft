@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { StatusResource } from '@core/models/resource/Resource.model';
+import { Router } from '@angular/router';
+import { CreateHardware, StatusResource } from '@core/models/resource/Resource.model';
+import { ToastrService } from 'ngx-toastr';
 import { ResourceService } from 'src/app/services/resource.service';
 
 @Component({
-  selector: 'app-create-page',
+  selector: 'app-create-hardware',
   templateUrl: './create-page.component.html',
   styleUrls: ['./create-page.component.scss']
 })
@@ -14,9 +16,12 @@ export class CreatePageComponent implements OnInit {
   public pushSubmit: boolean = false;
   public status: StatusResource[] = []
 
-  constructor(private resourceService: ResourceService) {
+  constructor(
+    private resourceService: ResourceService,
+    private toastr: ToastrService,
+    private router:Router
+    ) {
     this.initFormParent();
-
   }
 
   ngOnInit(): void {
@@ -29,7 +34,24 @@ export class CreatePageComponent implements OnInit {
         this.status = res;
       },
       (error) => {
-        console.log(error);
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    );
+  }
+
+  createHardware(hardware: CreateHardware): void {
+    this.resourceService.createHardware(hardware).subscribe(
+      (res) => {
+        this.toastr.success('Hardware correctamente creado');
+        this.router.navigate(['/resource/detail', res.id]);
+        console.log(res);
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
       }
     );
   }
@@ -38,32 +60,21 @@ export class CreatePageComponent implements OnInit {
   initFormParent(): void {
     this.formCreateHardware = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      hardwareStatus: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      brand: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      model: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      mac: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      type: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      observations: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      creationDate: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      status: new FormControl('', [Validators.required]),
+      brand: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      model: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      type: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      observations: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      acquisitionDate: new FormControl('', [Validators.required]),
     });
-
-    this.formCreateHardware.valueChanges.subscribe(value => {
-      console.log(value);
-    })
   }
 
   onSubmit(event: Event): void {
     this.pushSubmit = true;
     if (this.formCreateHardware.valid) {
       event.preventDefault();
-      const value = this.formCreateHardware.value;
-      // this.service.login(value).subscribe(
-        // (res) => {
-
-        // }, (error) => {
-
-        // }
-      // )
+      const value: CreateHardware = this.formCreateHardware.value;
+      this.createHardware(value);
     }
   }
 

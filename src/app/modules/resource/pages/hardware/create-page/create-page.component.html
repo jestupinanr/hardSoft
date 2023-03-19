@@ -10,7 +10,7 @@
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Nombre del equipo</label>
-        <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre del equipo"/>
+        <input class="input-text-form" formControlName="name" type="text" placeholder="Ingrese el nombre del equipo" required/>
         <div *ngIf="formCreateHardware.controls['name'].invalid && pushSubmit" class="alert">
           <div *ngIf="formCreateHardware.controls['name'].errors">
             El nombre debe tener mas de 5 caracteres
@@ -19,36 +19,66 @@
       </div>
       <div class="form-group">
         <label class="label-form"> Estado equipo  </label>
-        <select class="input-text-form" type="text" formControlName="hardwareStatus">
+        <select class="input-text-form" type="text" formControlName="status">
           <option value="" disabled selected hidden>Ingrese el tipo del producto</option>
           <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
+          <div *ngIf="formCreateHardware.controls['status'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateHardware.controls['status'].errors">
+              Debes seleccionar un item del selector
+            </div>
+          </div>
         </select>
       </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Marca</label>
-        <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo"/>
+        <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo" required />
+        <div *ngIf="formCreateHardware.controls['brand'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['brand'].errors">
+            La marca debe tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="label-form"> Modelo</label>
         <input class="input-text-form" formControlName="model" type="text" placeholder="Ingrese el modelo del equipo"/>
+        <div *ngIf="formCreateHardware.controls['model'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['model'].errors">
+            El modelo debe tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form">Tipo</label>
         <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de equipo"/>
+        <div *ngIf="formCreateHardware.controls['type'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['type'].errors">
+            El tipo debe tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="label-form"> Observaciones</label>
         <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observacion del equipo"></textarea>
+        <div *ngIf="formCreateHardware.controls['observations'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['observations'].errors">
+            Las observaciones deben de tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
     </div>
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Fecha de creacion</label>
-        <input class="input-text-form" formControlName="creationDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        <input class="input-text-form" formControlName="acquisitionDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        <div *ngIf="formCreateHardware.controls['acquisitionDate'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['acquisitionDate'].errors">
+            Debes seleccionar una fecha de creación
+          </div>
+        </div>
       </div>
     </div>
     <div class="button">

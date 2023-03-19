@@ -45,10 +45,9 @@ export class LoginPageComponent implements OnInit {
       const value = this.formLogin.value;
       this.service.login(value).subscribe(
         (res) => {
-          console.log(res);
-         this.cookieService.set('token', res.token, 1, '/')
-         this.cookieService.set('userName', res.user.name, 1, '/')
-         this.cookieService.set('roleName', res.user.role.name, 1, '/')
+          this.cookieService.set('token', res.token, 1, '/')
+          this.cookieService.set('userName', res.user.name, 1, '/')
+          this.cookieService.set('roleName', res.user.role.name, 1, '/')
           this.router.navigate(['/']);
         }, (error) => {
           this.toastr.error('Email o contraseña incorrecta');

@@ -1,22 +1,25 @@
 export interface User {
-  id: string;
-  nit: string;
-  name: string;
-  lastName:string
-  email: string;
-  password: string;
-  phone1: string;
-  phone2: string;
-  address: string;
-  bornDate: Date
-  role: Rol;
-  createAt: string;
-  updateAt: string;
+  id: string,
+  create_at: string,
+  update_at: string,
+  nit: string,
+  name: string,
+  lastName: string,
+  email: string,
+  phone1: string,
+  phone2: string,
+  address: string,
+  bornDate: string
+  role: Rol
+}
+
+export interface CreateUser extends Omit<User, 'id' | 'create_at' | 'update_at' > {
+  password: string
 }
 
 export interface Rol {
   id: string;
   name: string;
-  createAt: string;
-  updateAt: string;
+  create_at: string;
+  update_at: string;
 }

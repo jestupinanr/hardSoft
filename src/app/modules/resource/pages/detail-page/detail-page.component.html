@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="resource">
   <div class="title">
     <span class="material-icons">
       visibility
@@ -8,14 +8,19 @@
 
   <div class="basic-information">
     <div class="icon">
-      H
+      {{resource.hardware === null ? 'F' : 'H'}}
     </div>
-    <div class="information">
-      <span>name</span>
-      <span>tipo</span>
+    <div class="information" *ngIf="resource.hardware">
+      <span>{{resource.hardware.name}}</span>
+      <span>{{resource.hardware.type}}</span>
+    </div>
+    <div class="information" *ngIf="resource.software">
+      <span>{{resource.software.name}}</span>
+      <span>{{resource.software.type}}</span>
     </div>
     <div class="status">
-      Activo
+      {{resource.hardware?.status?.name}}
+      {{resource.software?.status?.name}}
     </div>
   </div>
 
@@ -27,9 +32,12 @@
         </span>
         <span>Fecha de adquisición</span>
       </div>
-      <span> 15/03/2021 </span>
+      <span>
+        {{resource.hardware?.acquisitionDate}}
+        {{resource.software?.acquisitionDate}}
+      </span>
     </div>
-    <div class="container-information-float w-50">
+    <!-- <div class="container-information-float w-50">
       <div class="title-contain-information">
         <span class="material-icons">
           calendar_month
@@ -37,7 +45,7 @@
         <span>Fecha de culminación</span>
       </div>
       <span> 15/03/2024 </span>
-    </div>
+    </div> -->
   </div>
 
   <div class="container-float">
@@ -45,7 +53,12 @@
       <div class="title-contain-information">
         <span>Descripción</span>
       </div>
-      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non leo enim. Morbi eget luctus mauris. Nullam vel mattis ligula. Cras non facilisis leo. Curabitur eu lacus ipsum. Proin luctus commodo sem quis consectetur. Quisque aliquam volutpat volutpat. Aenean fringilla tortor ut erat fringilla, at ultrices tortor euismod.</span>
+      <p *ngIf="resource.hardware">
+        {{resource.hardware.observations}}
+      </p>
+      <p *ngIf="resource.software">
+        {{resource.software.observations}}
+      </p>
     </div>
   </div>
 

@@ -18,15 +18,25 @@
   <div class="container-result">
     <div class="filter-item-search">
       <span class="letter-filter">A</span>
-      <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail">
-        <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
-          <div class="icon-search">
+      <div *ngFor="let item of resources" (click)="hanldeRedirect(item)">
+        <div class="item-search">
+          <div class="icon-search" *ngIf="item.hardware !== null">
             H
           </div>
+          <div class="icon-search" *ngIf="item.software !== null">
+            S
+          </div>
           <div class="information-search">
-           <span class="information-col">Nombre</span>
-            <span class="information-col">tipo</span>
-            <span class="information-col">asd</span>
+            <ng-container *ngIf="item.hardware !== null">
+              <span class="information-col">{{item.hardware.name}}</span>
+              <span class="information-col">{{item.hardware.type}}</span>
+              <span class="information-col">{{item.hardware.brand}}</span>
+            </ng-container>
+            <ng-container *ngIf="item.software !== null">
+              <span class="information-col">{{item.software.name}}</span>
+              <span class="information-col">{{item.software.type}}</span>
+              <span class="information-col">{{item.software.brand}}</span>
+            </ng-container>
           </div>
           <div class="options-search">
             <span class="material-icons">

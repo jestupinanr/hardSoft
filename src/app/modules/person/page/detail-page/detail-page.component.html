@@ -1,24 +1,24 @@
-<div class="container">
+<div class="container" *ngIf="user">
     <div class="title">
       <span class="material-icons">
         visibility
       </span>
       <span>Ver persona</span>
     </div>
-  
+
     <div class="basic-information">
       <div class="icon">
         <img src="../../../../../assets/vectors/profilePreterminate.svg"/>
       </div>
       <div class="information">
-        <span>name</span>
+        <span>{{user.name}} {{user.lastName}}</span>
         <span>Cargo</span>
       </div>
       <div class="status">
-        Administrador
+        {{user.role.name}}
       </div>
     </div>
-  
+
     <div class="container-float">
       <div class="container-information-float w-100">
         <div class="title-contain-information">
@@ -31,19 +31,19 @@
                 <span class="material-icons">
                   mail
                 </span>
-                Lorem@LoremIp.com
+                {{user.email}}
               </li>
               <li class="item-basic">
                 <span class="material-icons">
                   call
                 </span>
-                57811151428
+                {{user.phone1}}
               </li>
               <li class="item-basic">
                 <span class="material-icons">
                   badge
                 </span>
-                1026593589
+                {{user.nit}}
               </li>
             </ul>
           </div>
@@ -53,26 +53,26 @@
                 <span class="material-icons">
                   cake
                 </span>
-                16/05/2000
+                {{user.bornDate}}
               </li>
               <li class="item-basic">
                 <span class="material-icons">
                   calendar_month
                 </span>
-                21 Años
+                TODO: 21 Años
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  
+
     <div class="container-float">
       <div class="container-information-float w-100">
         <div class="title-contain-information">
           <span>Recursos asignados</span>
         </div>
-        <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail">
+        <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail/software">
           <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
             <div class="icon-search">
               S
@@ -92,7 +92,6 @@
         </div>
       </div>
     </div>
-  
-  
+
+
   </div>
-  
