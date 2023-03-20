@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 
 :root {
   --color-primary: #60D3C2;
@@ -84,7 +86,7 @@ text-3xl {
     width: 100%;
     option {
       padding: 0.5rem;
-     
+
     }
   }
 
@@ -130,4 +132,14 @@ text-3xl {
 }
 .w-100 {
   width: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--color-secondary) !important;
 }

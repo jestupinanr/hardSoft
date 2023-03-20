@@ -14,7 +14,6 @@ import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -23,7 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

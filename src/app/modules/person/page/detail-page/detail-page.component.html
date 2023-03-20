@@ -72,13 +72,16 @@
         <div class="title-contain-information">
           <span>Recursos asignados</span>
         </div>
-        <div *ngFor="let item of [1,2,3,4]" routerLink="/resource/detail/software">
-          <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
+        <div *ngFor="let item of assigments">
+          <div class="item-search" (onClick)="routerToResource(item)">
             <div class="icon-search">
-              S
+              {{item.resource.hardware ? 'H' : 'S' }}
             </div>
             <div class="information-search">
-             <span class="information-col">Nombre</span>
+             <span class="information-col">
+              {{item.resource.hardware && item.resource.hardware.name}}
+              {{item.resource.software && item.resource.software.name}}
+            </span>
             </div>
             <div class="options-search">
               <span class="material-icons">
@@ -92,6 +95,4 @@
         </div>
       </div>
     </div>
-
-
   </div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { StatusResource } from '@core/models/resource/Resource.model';
 import { CookieService } from 'ngx-cookie-service';
 import { CreateUser, Rol, User } from '@core/models/user/User.model';
+import { Assigment } from '@core/models/assigment/Assigments.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +31,6 @@ export class UserService {
     })
   }
 
-  // public createSoftware (createSoftware: CreateSoftware): Observable<Software> {
-  //   return this.http.post<Software>(`${this.API_HARDSOFT}resources/software`, createSoftware ,{
-  //     headers: {
-  //       Authorization: `Bearer ${this.cookieService.get('token')}`
-  //     }
-  //   })
-  // }
-
   public getAllUsers (): Observable<User[]> {
     return this.http.get<User[]>(`${this.API_HARDSOFT}users` ,{
       headers: {
@@ -48,5 +41,13 @@ export class UserService {
 
   public getOneUserById (id:string): Observable<User> {
     return this.http.get<User>(`${this.API_HARDSOFT}users/${id}`)
+  }
+
+  public getAssigmentByUser (id:string): Observable<Assigment[]> {
+    return this.http.get<Assigment[]>(`${this.API_HARDSOFT}assigment/user/${id}`,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    });
   }
 }

@@ -62,5 +62,33 @@
     </div>
   </div>
 
+  <div class="container-float">
+    <div class="container-information-float w-100">
+      <div class="title-contain-information">
+        <span>Asignado</span>
+      </div>
+      <div *ngIf="assigment">
+        <div class="item-search">
+          <div class="icon-search">
+            {{assigment.user.name.slice(0,1)}}
+          </div>
+          <div class="information-search">
+           <span class="information-col">
+            {{assigment.user.name}} {{assigment.user.lastName}}
+          </span>
+          </div>
+          <div class="options-search">
+            <span class="material-icons">
+              edit
+            </span>
+            <span class="material-icons">
+              delete
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>

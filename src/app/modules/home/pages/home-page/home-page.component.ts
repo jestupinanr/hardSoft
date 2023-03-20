@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SideBarComponent } from "../../../../shared/components/side-bar/side-bar.component";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
@@ -16,8 +15,6 @@ export class HomePageComponent implements OnInit {
 
   getStatusSideBar(status: boolean): void {
     this.statusSideBar = status;
-    console.log(this.statusSideBar);
-    
   }
 
 }

@@ -23,3 +23,8 @@ export interface Rol {
   create_at: string;
   update_at: string;
 }
+
+export interface SearchUser {
+  letter: string;
+  user: User[];
+}

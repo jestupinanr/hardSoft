@@ -22,12 +22,12 @@
         <select class="input-text-form" type="text" formControlName="status">
           <option value="" disabled selected hidden>Ingrese el tipo del producto</option>
           <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
-          <div *ngIf="formCreateHardware.controls['status'].invalid && pushSubmit" class="alert">
-            <div *ngIf="formCreateHardware.controls['status'].errors">
-              Debes seleccionar un item del selector
-            </div>
-          </div>
         </select>
+        <div *ngIf="formCreateHardware.controls['status'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateHardware.controls['status'].errors">
+            Debes seleccionar un item del selector
+          </div>
+        </div>
       </div>
     </div>
     <div class="group-form">

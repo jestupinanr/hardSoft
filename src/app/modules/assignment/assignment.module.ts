@@ -5,17 +5,23 @@ import { AssignmentRoutingModule } from './assignment-routing.module';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    CreatePageComponent,
     SearchPageComponent,
+    CreatePageComponent,
     DetailPageComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     AssignmentRoutingModule
+  ],
+  exports: [
+    SearchPageComponent
   ]
 })
 export class AssignmentModule { }

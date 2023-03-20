@@ -1,54 +1,106 @@
-<div class="container">
+<div class="container" *ngIf="incident">
     <div class="title">
       <span class="material-icons">
         visibility
       </span>
       <span>Ver incidente</span>
     </div>
-  
+
     <div class="basic-information">
       <div class="icon">
-        I
+        {{incident.title.slice(0, 1)}}
       </div>
       <div class="information">
-        <span>Computador no prende</span>
-        <span>tipo</span>
+        <span>{{incident.title}}</span>
+        <span>{{incident.assigment.resource.hardware ? 'Hardware' : 'Software'}}</span>
       </div>
       <div class="status">
-        En progreso
+        {{incident.incidentStatus.name}}
       </div>
     </div>
-  
+
     <div class="container-float">
-      <div class="container-information-float w-50">
-            <div class="title-contain-information">
-                 <span class="material-icons">
-                  </span>
-          <span>Nombre del usuario: Juan Sebastian Parra </span>
-        </div>
-        <span>Rol</span>
-        <span>Usuario</span>
-        <span>Cargo</span>
-      </div>
       <div class="container-information-float w-50">
         <div class="title-contain-information">
-          <span>Descripciom</span>
+          <ul class="list-without-decoration">
+            <li class="list-center">
+              <span class="material-icons">
+                badge
+              </span>
+              {{incident.assigment.user.name}} {{incident.assigment.user.lastName}}
+            </li>
+            <li class="list-center">
+              <span class="material-icons">
+                person
+              </span>
+              {{incident.assigment.user.role.name}}
+            </li>
+            <li class="list-center">
+              <span class="material-icons">
+                mail
+              </span>
+              {{incident.assigment.user.email}}
+            </li>
+            <li class="list-center">
+              <span class="material-icons">
+                phone
+              </span>
+              {{incident.assigment.user.phone1}}
+            </li>
+          </ul>
+          <button (click)="redirectToUser(incident)">
+            Ir al perfil
+          </button>
         </div>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti exercitationem incidunt esse, dolor quia, eligendi maiores at deserunt expedita reprehenderit quidem nihil perspiciatis? Consequatur, ducimus at inventore quae quod numquam.</span>
+      </div>
+
+
+      <div class="container-information-float w-50">
+        <div class="title-contain-information">
+          <ul class="list-without-decoration">
+            <li class="list-center">
+              <span class="material-icons">
+                phone_iphone
+              </span>
+              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.name}}
+              {{incident.assigment.resource.software && incident.assigment.resource.software.name}}
+            </li>
+            <li class="list-center">
+              <span class="material-icons">
+                business
+              </span>
+              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.brand}}
+              {{incident.assigment.resource.software && incident.assigment.resource.software.brand}}
+            </li>
+            <li class="list-center">
+              <span class="material-icons">
+                arrow_drop_down_circle
+              </span>
+              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.type}}
+              {{incident.assigment.resource.software && incident.assigment.resource.software.type}}
+            </li>
+          </ul>
+          <button (click)="redirectToResource(incident)">
+            Ir al recurso
+          </button>
+        </div>
       </div>
     </div>
 
-
     <div class="container-float">
-        <div class="container-information-float w-100">
-          <div class="title-contain-information">
-            <span>Solucion</span>
-          </div>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non leo enim. Morbi eget luctus mauris. Nullam vel mattis ligula. Cras non facilisis leo. Curabitur eu lacus ipsum. Proin luctus commodo sem quis consectetur. Quisque aliquam volutpat volutpat. Aenean fringilla tortor ut erat fringilla, at ultrices tortor euismod.</span>
+      <div class="container-information-float w-100">
+        <div class="title-contain-information">
+          <span>Descripción</span>
         </div>
+        <span>{{incident.description}}</span>
       </div>
-    
-  
-  
+    </div>
+    <div class="container-float">
+      <div class="container-information-float w-100">
+        <div class="title-contain-information">
+          <span>Solucion</span>
+        </div>
+        <span>{{incident.solution ? incident.solution : 'No tiene solución'}}</span>
+      </div>
+    </div>
   </div>
-  

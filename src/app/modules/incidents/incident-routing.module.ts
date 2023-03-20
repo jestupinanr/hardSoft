@@ -6,7 +6,7 @@ import { DetailPageComponent } from './page/detail-page/detail-page.component';
 
 const routes: Routes = [
   {
-    path: 'create/incident',
+    path: 'create',
     component: CreatePageComponent,
   },
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
     component: SearchPageComponent,
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: DetailPageComponent,
   },
   {

@@ -6,28 +6,54 @@
       </span>
       <span>Agregar Incidente</span>
     </div>
-    <form class="container-form" [formGroup]="formCreateIncident">
-      <div class="group-form">
-        <div class="form-group">
-          <label class="label-form">Cedula</label>
-          <input class="input-text-form" formControlName="name" type="number" placeholder="Ingrese la cedula"/>
-        </div>
-        <div class="form-group">
-          <label class="label-form">Estado incidente</label>
-          <select class="input-text-form" formControlName="rol" type="text">
-            <option value="" disabled selected hidden>Seleccione el estado incidente</option>
-            <option value="a">Nuevo</option>
-            <option value="a">Resuelto</option>
-            <option value="a">Cancelado</option>
-            <option value="a">En progreso</option>
-          </select>
+    <form class="container-form" [formGroup]="formCreateIncident" (ngSubmit)="onSubmit($event)">
+      <div class="form-group">
+        <label class="label-form">Titulo</label>
+        <input class="input-text-form" formControlName="title" type="text" placeholder="Ingrese el titulo de la incidencia"/>
+        <div *ngIf="formCreateIncident.controls['title'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateIncident.controls['title'].errors">
+            El titulo debe de tener mas de 2 caracteres
+          </div>
         </div>
       </div>
       <div class="group-form">
         <div class="form-group">
-          <label class="label-form"> Descripcion</label>
-          <textarea class="text-text-form" formControlName="observations" placeholder="Ingresar la descripcion del incidente"></textarea>
+          <label class="label-form">Asignación</label>
+          <p>{{idAssigment}}</p>
+          <button (click)="openModalAssigment()" type="button">
+            Seleccionar
+          </button>
+          <div *ngIf="formCreateIncident.controls['assigment'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateIncident.controls['assigment'].errors">
+              Debes seleccionar una asignacion
+            </div>
+          </div>
         </div>
+        <div class="form-group">
+          <label class="label-form">Estado incidente</label>
+          <select class="input-text-form" type="text" formControlName="incidentStatus">
+            <option value="" disabled selected hidden>Ingrese el estado del incidente</option>
+            <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div *ngIf="formCreateIncident.controls['incidentStatus'].invalid && pushSubmit" class="alert">
+            <div *ngIf="formCreateIncident.controls['incidentStatus'].errors">
+              Debes seleccionar un estado
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label-form"> Descripcion</label>
+        <textarea class="text-text-form" formControlName="description" placeholder="Ingresar la descripcion del incidente"></textarea>
+        <div *ngIf="formCreateIncident.controls['description'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateIncident.controls['description'].errors">
+            La descripción debe tener mas de 5 caracteres
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="group-form">
+
         <div class="form-group">
           <label class="label-form">Estado de asingnacion incidente</label>
           <select class="input-text-form" formControlName="rol" type="text">
@@ -64,10 +90,9 @@
           <span>bbbbb</span>
         </div>
       </div>
-      </div>
+      </div> -->
       <div class="button">
-        <button class="button-primary"> Agregar </button>
+        <button class="button-primary" type="submit"> Agregar </button>
       </div>
     </form>
   </div>
-  

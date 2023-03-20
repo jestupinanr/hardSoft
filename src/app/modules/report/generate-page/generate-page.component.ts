@@ -6,13 +6,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./generate-page.component.scss']
 })
 export class GeneratePageComponent implements OnInit {
- 
+
   public formCreateGenerate: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder
-    ) { 
+    ) {
     this.initFormParent();
-    
+
   }
 
   ngOnInit(): void {
@@ -28,10 +28,6 @@ export class GeneratePageComponent implements OnInit {
       address: new FormControl('', [Validators.required, Validators.minLength(5)]),
       bornDate: new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
-
-    this.formCreateGenerate.valueChanges.subscribe(value => {
-      console.log(value);
-    })
   }
 }
 

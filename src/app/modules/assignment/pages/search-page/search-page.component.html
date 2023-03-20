@@ -1,1 +1,43 @@
-<p>search-page works!</p>
+<div class="container">
+  <img src="../../../../../assets/images/lupa.png" alt="lupa" class="lupa"/>
+  <div class="title">
+    <span class="material-icons">
+      devices
+    </span>
+    <span>Consultar asignaciones</span>
+  </div>
+
+  <div class="container-search">
+    <input type="text" class="input-search" placeholder="Buscar recursos" />
+    <div class="button-container">
+      <button class="button-primary button-size">Buscar</button>
+      <button class="button-secondary button-size">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="container-result">
+    <div class="filter-item-search" *ngFor="let arrayFiltered of assigments">
+      <span class="letter-filter">{{arrayFiltered.letter}}</span>
+      <div *ngFor="let item of arrayFiltered.assigment" (click)="hanldeRedirect(item)">
+        <div class="item-search">
+          <div class="icon-search">
+            {{item.user.name.slice(0,1)}}
+          </div>
+          <div class="information-search">
+            <span class="information-col">{{item.user.name}} {{item.user.lastName}}</span>
+            <span class="information-col">{{item.resource.hardware ? item.resource.hardware.name : item.resource.software?.name}}</span>
+            <span class="information-col">{{item.create_at}}</span>
+          </div>
+          <div class="options-search">
+            <span class="material-icons">
+              edit
+            </span>
+            <span class="material-icons">
+              delete
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

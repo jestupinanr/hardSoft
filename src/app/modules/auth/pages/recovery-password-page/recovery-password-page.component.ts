@@ -10,9 +10,9 @@ export class RecoveryPasswordPageComponent implements OnInit {
 
   public formLogin: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder) {
     this.initFormParent();
-    
+
   }
 
   ngOnInit(): void {
@@ -22,10 +22,6 @@ export class RecoveryPasswordPageComponent implements OnInit {
     this.formLogin = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
-
-    this.formLogin.valueChanges.subscribe(value => {
-      console.log(value);
-    })
   }
 
 }

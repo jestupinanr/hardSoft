@@ -10,9 +10,9 @@ export class RegisterPageComponent implements OnInit {
 
   public formRegister: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder) {
     this.initFormParent();
-    
+
   }
 
   ngOnInit(): void {
@@ -25,10 +25,6 @@ export class RegisterPageComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       role: new FormControl('', [Validators.required])
     });
-
-    this.formRegister.valueChanges.subscribe(value => {
-      console.log(value);
-    })
   }
 
 }

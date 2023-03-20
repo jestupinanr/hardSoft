@@ -6,7 +6,7 @@
       </span>
       <span>Incidente</span>
     </div>
-  
+
     <div class="container-search">
       <input type="text" class="input-search" placeholder="Buscar Incidente" />
       <div class="button-container">
@@ -14,21 +14,20 @@
         <button class="button-secondary button-size">Limpiar</button>
       </div>
     </div>
-  
-    <div class="container-result">
-      <div class="filter-item-search">
-        <span class="letter-filter">A</span>
-      
-        <div *ngFor="let item of [1,2,3,4]" routerLink="/incident/detail">
-          <div class="item-search" [ngClass]="{'first-element': item === 1,'last-element': item === 4 }">
+
+    <div class="container-result" >
+      <div class="filter-item-search" *ngFor="let arrayFiltered of incidents">
+        <span class="letter-filter">{{arrayFiltered.letter}}</span>
+
+        <div *ngFor="let item of arrayFiltered.incident" (click)="hanldeRedirect(item)">
+          <div class="item-search">
             <div class="icon-search">
               H
             </div>
             <div class="information-search">
-             <span class="information-col">Nombre</span>
-              <span class="information-col">Cedula</span>
-              <span class="information-col">Estado</span>
-              <span class="information-col">ID incidente</span>
+             <span class="information-col">{{item.assigment.user.name}} {{item.assigment.user.lastName}}</span>
+              <span class="information-col">{{item.assigment.resource.hardware ? item.assigment.resource.hardware.name : item.assigment.resource.software?.name}}</span>
+              <span class="information-col">{{item.incidentStatus.name}}</span>
             </div>
             <div class="options-search">
               <span class="material-icons">
@@ -41,7 +40,6 @@
           </div>
         </div>
       </div>
-  
+
     </div>
   </div>
-  

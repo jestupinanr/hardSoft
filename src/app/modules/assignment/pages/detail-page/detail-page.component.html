@@ -1,1 +1,73 @@
-<p>detail-page works!</p>
+<div class="container" *ngIf="assigment">
+  <div class="title">
+    <span class="material-icons">
+      visibility
+    </span>
+    <span>Ver Asignación</span>
+  </div>
+
+  <div class="basic-information">
+    <div class="icon">
+      <img src="../../../../../assets/vectors/profilePreterminate.svg"/>
+    </div>
+    <div class="information">
+      <span>{{assigment.user.name}} {{assigment.user.lastName}}</span>
+      <span>Cargo</span>
+    </div>
+    <div class="status">
+      {{assigment.user.role.name}}
+    </div>
+  </div>
+
+  <div class="basic-information">
+    <div class="icon">
+      {{assigment.resource.hardware === null ? 'F' : 'H'}}
+    </div>
+    <div class="information" *ngIf="assigment.resource.hardware">
+      <span>{{assigment.resource.hardware.name}}</span>
+      <span>{{assigment.resource.hardware.type}}</span>
+    </div>
+    <div class="information" *ngIf="assigment.resource.software">
+      <span>{{assigment.resource.software.name}}</span>
+      <span>{{assigment.resource.software.type}}</span>
+    </div>
+    <div class="status">
+      {{assigment.resource.hardware?.status?.name}}
+      {{assigment.resource.software?.status?.name}}
+    </div>
+  </div>
+
+  <div class="container-float">
+    <div class="container-information-float w-50">
+      <div class="title-contain-information">
+        <span class="material-icons">
+          calendar_month
+        </span>
+        <span>Fecha de asignación</span>
+      </div>
+      <span>
+        {{assigment.create_at}}
+      </span>
+    </div>
+    <div class="container-information-float w-50">
+      <div class="title-contain-information">
+        <span class="material-icons">
+          calendar_month
+        </span>
+        <span>Fecha de devolución</span>
+      </div>
+      <span> TODO </span>
+    </div>
+  </div>
+
+  <div class="container-float">
+    <div class="container-information-float w-100">
+      <div class="title-contain-information">
+        <span>Detalles</span>
+      </div>
+      <p>
+        {{assigment.description}}
+      </p>
+    </div>
+  </div>
+</div>

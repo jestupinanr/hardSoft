@@ -48,3 +48,8 @@ export interface Resources  {
   hardware: Hardware | null
   software: Software | null
 }
+
+export interface searchResource {
+  letter: string;
+  resources: Resources[];
+}

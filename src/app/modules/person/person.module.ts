@@ -12,13 +12,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     SearchPageComponent,
     CreatePageComponent,
-    DetailPageComponent
+    DetailPageComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     PersonRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ]
+  ],
+  exports: [
+    SearchPageComponent
+  ],
 })
 export class PersonModule { }

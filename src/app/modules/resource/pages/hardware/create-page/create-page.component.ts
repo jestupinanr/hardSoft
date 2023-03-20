@@ -46,7 +46,6 @@ export class CreatePageComponent implements OnInit {
       (res) => {
         this.toastr.success('Hardware correctamente creado');
         this.router.navigate(['/resource/detail', res.id]);
-        console.log(res);
       },
       (error) => {
         error.error.message.map((msg:string) =>

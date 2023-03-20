@@ -48,7 +48,7 @@ export class SideBarComponent implements OnInit {
             name: "Buscar usuario",
             url: '/person/search'
           }
-          
+
         ]
       },
       {
@@ -58,7 +58,7 @@ export class SideBarComponent implements OnInit {
         children: [
           {
             name: "Crear incidencias",
-            url: '/incident/create/incident'
+            url: '/incident/create'
           },
           {
             name: "Ver incidencias",
@@ -73,11 +73,11 @@ export class SideBarComponent implements OnInit {
         children: [
           {
             name: "Crear Asignacion",
-            url: '/incident/create/incident'
+            url: '/assignment/create'
           },
           {
             name: "Ver Asignaciones",
-            url: '/incident/search'
+            url: '/assignment/search'
           }
         ]
       },

@@ -1,32 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '@core/models/user/User.model';
+import { SearchUser, User } from '@core/models/user/User.model';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/users.service';
 
 @Component({
-  selector: 'app-search-page',
+  selector: 'search-page-user',
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent implements OnInit {
+export class SearchPageComponent {
 
-  public users: User[] = [];
+  @Input () value: boolean;
+  public users: SearchUser[] = [];
+  @Output() idUser = new EventEmitter<string>();
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
     private router:Router
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.getAllUsers()
   }
 
   getAllUsers () {
     this.userService.getAllUsers().subscribe(
       (res) => {
-        this.users = res;
+        this.organiceElements(res);
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -34,10 +34,34 @@ export class SearchPageComponent implements OnInit {
         )
       }
     );
-  }
+  };
+
+  organiceElements (res: User[]) {
+    const initial: string[] = res.map((objet) => objet.name.charAt(0).toUpperCase());
+
+    const filtered: Record<string, SearchUser> = {};
+
+    for (let i = 0; i < initial.length; i++) {
+      const letra = initial[i];
+      if (!(letra in filtered)) {
+        filtered[letra] = { letter: letra, user: [] };
+      }
+      filtered[letra].user.push(res[i]);
+    }
+
+    const claves = Object.keys(filtered).sort();
+
+    for (const order of claves) {
+      this.users.push(filtered[order])
+    }
+  };
 
   hanldeRedirect = (user: User) => {
-    this.router.navigate(['/person/detail' , user.id])
+    if (this.value) {
+      this.idUser.emit(user.id);
+    } else {
+      this.router.navigate(['/person/detail' , user.id])
+    }
   };
 
 }
