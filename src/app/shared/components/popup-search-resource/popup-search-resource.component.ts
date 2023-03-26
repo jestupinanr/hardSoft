@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  MatDialogRef } from '@angular/material/dialog';
+import { Resources } from '@core/models/resource/Resource.model';
 
 @Component({
   selector: 'popup-search-resource',
@@ -8,7 +9,7 @@ import {  MatDialogRef } from '@angular/material/dialog';
 })
 export class PopupSearchResourceComponent implements OnInit {
 
-  idResource: string;
+  resource: Resources;
   status: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<PopupSearchResourceComponent>
@@ -18,12 +19,12 @@ export class PopupSearchResourceComponent implements OnInit {
 
   }
 
-  receiveId($event: string) {
-    this.idResource = $event;
+  receiveId($event: Resources) {
+    this.resource = $event;
     this.onClose();
   }
 
   onClose(): void {
-    this.dialogRef.close(this.idResource);
+    this.dialogRef.close(this.resource);
 }
 }

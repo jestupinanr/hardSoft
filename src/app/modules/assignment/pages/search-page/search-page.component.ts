@@ -13,7 +13,7 @@ export class SearchPageComponent {
 
   @Input () value: boolean;
   assigments: SearchAssigment[] = [];
-  @Output() idAssigment = new EventEmitter<string>();
+  @Output() assigment = new EventEmitter<Assigment>();
 
   constructor(
     private assigmentService: AssigmentService,
@@ -58,7 +58,7 @@ export class SearchPageComponent {
 
   hanldeRedirect = (assigment: Assigment) => {
     if (this.value) {
-      this.idAssigment.emit(assigment.id);
+      this.assigment.emit(assigment);
     } else {
       this.router.navigate(['/assignment/detail' , assigment.id])
     }

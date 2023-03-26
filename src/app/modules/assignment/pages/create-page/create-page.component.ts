@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { createrAssigment } from '@core/models/assigment/Assigments.model';
+import { Resources } from '@core/models/resource/Resource.model';
+import { User } from '@core/models/user/User.model';
 import { PopupSearchResourceComponent } from '@shared/components/popup-search-resource/popup-search-resource.component';
 import { PopupComponent } from '@shared/components/popup-search-user/popup.component';
 import { ToastrService } from 'ngx-toastr';
@@ -18,8 +20,8 @@ export class CreatePageComponent implements OnInit {
   public formCreateAssigment: FormGroup = new FormGroup({});
   popupDialogRef: MatDialogRef<PopupComponent>;
   popupResourceRef: MatDialogRef<PopupSearchResourceComponent>;
-  idUser: string;
-  idResource: string;
+  user: User;
+  resource: Resources;
   public pushSubmit: boolean = false;
 
   constructor(
@@ -61,11 +63,11 @@ export class CreatePageComponent implements OnInit {
     })
 
     this.popupDialogRef.afterClosed()
-    .subscribe(idUser => {
-      this.idUser = idUser;
+    .subscribe(user => {
+      this.user = user;
       this.formCreateAssigment.setValue({
         ...this.formCreateAssigment.value,
-        user: idUser
+        user: user.id
       })
     })
   };
@@ -83,11 +85,11 @@ export class CreatePageComponent implements OnInit {
     })
 
     this.popupResourceRef.afterClosed()
-    .subscribe(idResource => {
-      this.idResource = idResource;
+    .subscribe(resource => {
+      this.resource = resource;
       this.formCreateAssigment.setValue({
         ...this.formCreateAssigment.value,
-        resource: idResource
+        resource: resource.id
       })
     })
   };

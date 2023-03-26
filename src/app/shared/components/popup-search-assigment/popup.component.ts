@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  MatDialogRef } from '@angular/material/dialog';
+import { Assigment } from '@core/models/assigment/Assigments.model';
 
 @Component({
   selector: 'app-popup',
@@ -8,7 +9,7 @@ import {  MatDialogRef } from '@angular/material/dialog';
 })
 export class PopupSearchAssigmentComponent implements OnInit {
 
-  idAssigment: string;
+  assigment: Assigment;
   status: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<PopupSearchAssigmentComponent>
@@ -18,12 +19,12 @@ export class PopupSearchAssigmentComponent implements OnInit {
 
   }
 
-  receiveId($event: string) {
-    this.idAssigment = $event;
+  receiveId($event: Assigment) {
+    this.assigment = $event;
     this.onClose();
   }
 
   onClose(): void {
-    this.dialogRef.close(this.idAssigment);
+    this.dialogRef.close(this.assigment);
 }
 }

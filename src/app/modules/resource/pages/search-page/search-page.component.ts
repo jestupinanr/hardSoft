@@ -13,7 +13,7 @@ export class SearchPageComponent implements OnInit {
 
   @Input () value: boolean;
   public resources: searchResource[] = [];
-  @Output() idResource = new EventEmitter<string>();
+  @Output() resource = new EventEmitter<Resources>();
 
   constructor(
     private resourceService: ResourceService,
@@ -67,7 +67,7 @@ export class SearchPageComponent implements OnInit {
 
   hanldeRedirect = (resource: Resources) => {
     if (this.value) {
-      this.idResource.emit(resource.id);
+      this.resource.emit(resource);
     } else {
       this.router.navigate(['/resource/detail' , resource.id])
     }

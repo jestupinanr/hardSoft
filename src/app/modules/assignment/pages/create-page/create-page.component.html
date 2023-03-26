@@ -10,8 +10,11 @@
     <div class="group-form">
       <div class="form-group">
         <label class="label-form">Empleado</label>
-        <p>{{idUser}}</p>
-        <button (click)="openModalUser()" type="button">
+        <p *ngIf="user" class="items-center">
+          <span class="material-icons">person</span>
+          {{user.name}} {{user.lastName}}
+        </p>
+        <button (click)="openModalUser()" type="button" class="button-primary">
           Escoger
         </button>
         <div *ngIf="formCreateAssigment.controls['user'].invalid && pushSubmit" class="alert">
@@ -22,8 +25,12 @@
       </div>
       <div class="form-group">
         <label class="label-form">Recurso</label>
-        <p>{{idResource}}</p>
-        <button (click)="openModalResource()" type="button">
+        <p *ngIf="resource" class="items-center">
+          <span class="material-icons">smartphone</span>
+          {{resource.hardware && resource.hardware.name}}
+          {{resource.software && resource.software.name}}
+        </p>
+        <button (click)="openModalResource()" type="button" class="button-primary">
           Escoger
         </button>
         <div *ngIf="formCreateAssigment.controls['resource'].invalid && pushSubmit" class="alert">

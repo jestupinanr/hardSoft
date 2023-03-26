@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CreateHardware, CreateSoftware, Hardware, Resources, Software, StatusResource } from '@core/models/resource/Resource.model';
+import { BrandsResource, CreateHardware, CreateSoftware, Hardware, Resources, Software, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '@core/models/user/User.model';
 import { Assigment } from '@core/models/assigment/Assigments.model';
@@ -23,16 +23,48 @@ export class ResourceService {
     } )
   }
 
-  public createHardware (createHardware: CreateHardware): Observable<Hardware> {
-    return this.http.post<Hardware>(`${this.API_HARDSOFT}resources/hardware`, createHardware ,{
+  public getBrandsHardware (): Observable<BrandsResource[]> {
+    return this.http.get<StatusResource[]>(`${this.API_HARDSOFT}resources/brand?resource=hardware`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    } )
+  }
+
+  public getTypesHardware(): Observable<TypesResource[]> {
+    return this.http.get<TypesResource[]>(`${this.API_HARDSOFT}resources/type?resource=hardware`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    } )
+  }
+
+  public getBrandsSoftware (): Observable<BrandsResource[]> {
+    return this.http.get<StatusResource[]>(`${this.API_HARDSOFT}resources/brand?resource=software`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    } )
+  }
+
+  public getTypesSoftware(): Observable<TypesResource[]> {
+    return this.http.get<TypesResource[]>(`${this.API_HARDSOFT}resources/type?resource=software`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    } )
+  }
+
+  public createHardware (createHardware: CreateHardware): Observable<Resources> {
+    return this.http.post<Resources>(`${this.API_HARDSOFT}resources/hardware`, createHardware ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }
     })
   }
 
-  public createSoftware (createSoftware: CreateSoftware): Observable<Software> {
-    return this.http.post<Software>(`${this.API_HARDSOFT}resources/software`, createSoftware ,{
+  public createSoftware (createSoftware: CreateSoftware): Observable<Resources> {
+    return this.http.post<Resources>(`${this.API_HARDSOFT}resources/software`, createSoftware ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }
@@ -53,6 +85,50 @@ export class ResourceService {
 
   public getAssigmentByIdResource (id:string): Observable<Assigment> {
     return this.http.get<Assigment>(`${this.API_HARDSOFT}assigment/resource/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public createbrandHardware (name: string): Observable<BrandsResource> {
+    return this.http.post<Software>(`${this.API_HARDSOFT}resources/brand`, {
+      name,
+      resource: 'hardware'
+    }, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public createTypeHardware (name: string): Observable<TypesResource> {
+    return this.http.post<Software>(`${this.API_HARDSOFT}resources/type`, {
+      name,
+      resource: 'hardware'
+    }, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public createbrandSoftware (name: string): Observable<BrandsResource> {
+    return this.http.post<Software>(`${this.API_HARDSOFT}resources/brand`, {
+      name,
+      resource: 'software'
+    }, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public createTypeSoftware (name: string): Observable<TypesResource> {
+    return this.http.post<Software>(`${this.API_HARDSOFT}resources/type`, {
+      name,
+      resource: 'software'
+    }, {
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }

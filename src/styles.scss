@@ -106,10 +106,11 @@ text-3xl {
 //bottom clases
 .button-primary{
   background-color: var(--color-primary);
+  padding: 1rem 3rem;
   border: none;
-  color: white;
-  box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
+  border-radius: 3rem;
+  color: var(--text-white);
+  font-weight: 800;
   cursor: pointer;
 }
 
@@ -137,9 +138,12 @@ text-3xl {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
-
-
 .mat-mdc-dialog-container .mdc-dialog__surface {
   background-color: var(--color-secondary) !important;
+}
+
+.flex-column-gap-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

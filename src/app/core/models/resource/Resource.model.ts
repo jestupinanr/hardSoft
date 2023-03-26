@@ -5,6 +5,15 @@ export interface StatusResource {
   id: string;
   name: string;
 }
+export interface BrandsResource {
+  id: string;
+  name: string;
+}
+
+export interface TypesResource {
+  id: string;
+  name: string;
+}
 
 export interface Hardware {
   id: string,

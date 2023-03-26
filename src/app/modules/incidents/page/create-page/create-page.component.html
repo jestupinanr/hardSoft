@@ -19,8 +19,18 @@
       <div class="group-form">
         <div class="form-group">
           <label class="label-form">Asignación</label>
-          <p>{{idAssigment}}</p>
-          <button (click)="openModalAssigment()" type="button">
+          <div *ngIf="assigment" class="flex-column-gap-3">
+            <p class="items-center">
+              <span class="material-icons">person</span>
+              {{assigment.user.name}} {{assigment.user.lastName}}
+            </p>
+            <p class="items-center">
+              <span class="material-icons">smartphone</span>
+              {{assigment.resource.hardware && assigment.resource.hardware.name}}
+              {{assigment.resource.software && assigment.resource.software.name}}
+            </p>
+          </div>
+          <button (click)="openModalAssigment()" type="button" class="button-primary">
             Seleccionar
           </button>
           <div *ngIf="formCreateIncident.controls['assigment'].invalid && pushSubmit" class="alert">
@@ -91,6 +101,7 @@
         </div>
       </div>
       </div> -->
+
       <div class="button">
         <button class="button-primary" type="submit"> Agregar </button>
       </div>

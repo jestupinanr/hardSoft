@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  MatDialogRef } from '@angular/material/dialog';
+import { User } from '@core/models/user/User.model';
 
 @Component({
   selector: 'app-popup',
@@ -8,7 +9,7 @@ import {  MatDialogRef } from '@angular/material/dialog';
 })
 export class PopupComponent implements OnInit {
 
-  idUser: string;
+  user: User;
   status: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<PopupComponent>
@@ -18,12 +19,12 @@ export class PopupComponent implements OnInit {
 
   }
 
-  receiveId($event: string) {
-    this.idUser = $event;
+  receiveId($event: User) {
+    this.user = $event;
     this.onClose();
   }
 
   onClose(): void {
-    this.dialogRef.close(this.idUser);
+    this.dialogRef.close(this.user);
 }
 }

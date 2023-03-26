@@ -30,11 +30,27 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!showNewType">
           <label class="label-form"> Tipo</label>
-          <input class="input-text-form" formControlName="type" type="text" placeholder="Ingrese el tipo de software"/>
+          <select class="input-text-form" type="text" formControlName="type">
+            <option value="" disabled selected hidden>Seleccione el tipo</option>
+            <option *ngFor="let item of types" [value]="item.id">{{item.name}}</option>
+            <option value="other">Otro</option>
+          </select>
           <div *ngIf="formCreateSoftware.controls['type'].invalid && pushSubmit" class="alert">
             <div *ngIf="formCreateSoftware.controls['type'].errors">
+              Debes seleccionar un item del selector
+            </div>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="showNewType">
+          <label class="label-form"> Tipo</label>
+          <input class="input-text-form" formControlName="newType" type="text" placeholder="Ingrese el nuevo tipo"/>
+          <div class="button">
+            <button class="button-primary" type="submit"> Agregar </button>
+          </div>
+          <div *ngIf="formCreateSoftware.controls['newType'].invalid" class="alert">
+            <div *ngIf="formCreateSoftware.controls['newType'].errors">
               El tipo debe tener mas de 2 caracteres
             </div>
           </div>
@@ -42,14 +58,30 @@
       </div>
     </div>
     <div class="group-form">
-      <div class="form-group">
+      <div class="form-group" *ngIf="!showNewBrand">
         <label class="label-form"> Marca</label>
-          <input class="input-text-form" formControlName="brand" type="text" placeholder="Ingrese la marca del equipo"/>
-          <div *ngIf="formCreateSoftware.controls['brand'].invalid && pushSubmit" class="alert">
-            <div *ngIf="formCreateSoftware.controls['brand'].errors">
-              La marca debe tener mas de 2 caracteres
-            </div>
+        <select class="input-text-form" type="text" formControlName="brand">
+          <option value="" disabled selected hidden>Seleccione la marca del producto</option>
+          <option *ngFor="let item of brands" [value]="item.id">{{item.name}}</option>
+          <option value="other">Otro</option>
+        </select>
+        <div *ngIf="formCreateSoftware.controls['brand'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateSoftware.controls['brand'].errors">
+            Debes seleccionar un item del selector
           </div>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="showNewBrand">
+        <label class="label-form"> Marca</label>
+        <input class="input-text-form" formControlName="newBrand" type="text" placeholder="Ingrese la nueva marca"/>
+        <div class="button">
+          <button class="button-primary" type="submit"> Agregar </button>
+        </div>
+        <div *ngIf="formCreateSoftware.controls['newBrand'].invalid" class="alert">
+          <div *ngIf="formCreateSoftware.controls['newBrand'].errors">
+            La marca debe tener mas de 2 caracteres
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="label-form"> Numero de licencia</label>
@@ -63,7 +95,7 @@
     </div>
     <div class="form-group">
       <label class="label-form"> Observaciones</label>
-      <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observacion del equipo"></textarea>
+      <textarea class="text-text-form" formControlName="observations" placeholder="Ingrese la observación"></textarea>
       <div *ngIf="formCreateSoftware.controls['observations'].invalid && pushSubmit" class="alert">
         <div *ngIf="formCreateSoftware.controls['observations'].errors">
           Las observaciones deben de tener mas de 2 caracteres
@@ -73,7 +105,7 @@
     <div class="group-form">
       <div class="form-group">
         <label class="label-form"> Fecha de adquisición</label>
-        <input class="input-text-form" formControlName="acquisitionDate" type="date" placeholder="Seleccione la fecha de ingreso"/>
+        <input class="input-text-form" formControlName="acquisitionDate" type="date" placeholder="Seleccione la fecha de adquisición"/>
         <div *ngIf="formCreateSoftware.controls['acquisitionDate'].invalid && pushSubmit" class="alert">
           <div *ngIf="formCreateSoftware.controls['acquisitionDate'].errors">
             Debes seleccionar una fecha de creación

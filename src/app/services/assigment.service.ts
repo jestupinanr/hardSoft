@@ -39,6 +39,10 @@ export class AssigmentService {
   }
 
   public getOneAssigmentById (id:string): Observable<Assigment> {
-    return this.http.get<Assigment>(`${this.API_HARDSOFT}assigment/${id}`)
+    return this.http.get<Assigment>(`${this.API_HARDSOFT}assigment/${id}`,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
   }
 }

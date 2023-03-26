@@ -13,7 +13,7 @@ export class SearchPageComponent {
 
   @Input () value: boolean;
   public users: SearchUser[] = [];
-  @Output() idUser = new EventEmitter<string>();
+  @Output() idUser = new EventEmitter<User>();
 
   constructor(
     private userService: UserService,
@@ -58,7 +58,7 @@ export class SearchPageComponent {
 
   hanldeRedirect = (user: User) => {
     if (this.value) {
-      this.idUser.emit(user.id);
+      this.idUser.emit(user);
     } else {
       this.router.navigate(['/person/detail' , user.id])
     }

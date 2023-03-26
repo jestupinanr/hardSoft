@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Assigment } from '@core/models/assigment/Assigments.model';
 import { CreateIncident, statusIncident } from '@core/models/incident/Incident.model';
 import { PopupSearchAssigmentComponent } from '@shared/components/popup-search-assigment/popup.component';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +17,7 @@ export class CreatePageComponent implements OnInit {
 
   public formCreateIncident: FormGroup = new FormGroup({});
   popupAssigmentref: MatDialogRef<PopupSearchAssigmentComponent>;
-  idAssigment: string;
+  assigment: Assigment;
   status: statusIncident[];
   public pushSubmit: boolean = false;
 
@@ -69,11 +70,11 @@ export class CreatePageComponent implements OnInit {
     })
 
     this.popupAssigmentref.afterClosed()
-    .subscribe(idAssigment => {
-      this.idAssigment = idAssigment;
+    .subscribe(assigment => {
+      this.assigment = assigment;
       this.formCreateIncident.setValue({
         ...this.formCreateIncident.value,
-        assigment: idAssigment
+        assigment: assigment
       })
     })
   };
