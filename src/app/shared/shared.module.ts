@@ -9,6 +9,7 @@ import { PopupSearchResourceComponent } from './components/popup-search-resource
 import { ResourceModule } from '@modules/resource/resource.module';
 import { AssignmentModule } from '@modules/assignment/assignment.module';
 import { PopupSearchAssigmentComponent } from './components/popup-search-assigment/popup.component';
+import { PopupEditHardwareComponent } from './components/popup-edit-hardware/popup-edit-hardware.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PopupSearchAssigmentComponent } from './components/popup-search-assigme
     HeaderComponent,
     PopupComponent,
     PopupSearchResourceComponent,
-    PopupSearchAssigmentComponent
+    PopupSearchAssigmentComponent,
+    PopupEditHardwareComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BrandsResource, CreateHardware, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
+import { BrandsResource, CreateHardware, Hardware, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
 import { ToastrService } from 'ngx-toastr';
 import { ResourceService } from 'src/app/services/resource.service';
 
@@ -21,6 +21,8 @@ export class CreatePageComponent implements OnInit {
   public showNewType: boolean = false;
   public formNewBrand: FormGroup = new FormGroup({});
   public formNewType: FormGroup = new FormGroup({});
+  @Input()
+  public dataHardware?: Hardware;
 
   public formGroupinitial = {
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Assigment } from '@core/models/assigment/Assigments.model';
 import { Resources } from '@core/models/resource/Resource.model';
-import { User } from '@core/models/user/User.model';
+import { PopupEditHardwareComponent } from '@shared/components/popup-edit-hardware/popup-edit-hardware.component';
 import { ToastrService } from 'ngx-toastr';
 import { ResourceService } from 'src/app/services/resource.service';
 
@@ -15,8 +16,10 @@ export class DetailPageComponent implements OnInit {
 
   public resource: Resources;
   public assigment: Assigment;
+  popupResourceRef: MatDialogRef<PopupEditHardwareComponent>;
 
   constructor(
+    private dialogRef: MatDialog,
     private route:ActivatedRoute,
     private toastr: ToastrService,
     private resourceService: ResourceService
@@ -54,6 +57,32 @@ export class DetailPageComponent implements OnInit {
         }
       );
     }
+  }
+
+  openModalResourceHardware () {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = '90vw';
+    dialogConfig.maxWidth = '90vw';
+
+    dialogConfig.maxHeight = '50vw';
+    dialogConfig.minHeight = '50vw';
+
+    this.popupResourceRef = this.dialogRef.open(PopupEditHardwareComponent, {
+      data: {
+        hardware: this.resource.hardware,
+      },
+      ...dialogConfig,
+    })
+
+    this.popupResourceRef.afterClosed()
+    .subscribe(resource => {
+      console.log(resource);
+    })
+  };
+
+  editResource() {
+   if (this.resource.hardware)
+    this.openModalResourceHardware()
   }
 
 }

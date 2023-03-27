@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ResourceRoutingModule,
   ],
   exports: [
-    SearchPageComponent
+    SearchPageComponent,
+    CreatePageComponent
   ],
 })
 export class ResourceModule { }
