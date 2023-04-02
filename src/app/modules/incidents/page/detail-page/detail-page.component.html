@@ -17,6 +17,13 @@
       <div class="status">
         {{incident.incidentStatus.name}}
       </div>
+      <div>
+        <span
+          class="material-icons"
+          style="color: white; cursor: pointer;"
+          (click)="editIncidents()"
+          >edit</span>
+      </div>
     </div>
 
     <div class="container-float">
@@ -69,15 +76,15 @@
               <span class="material-icons">
                 business
               </span>
-              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.brand}}
-              {{incident.assigment.resource.software && incident.assigment.resource.software.brand}}
+              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.brand.name}}
+              {{incident.assigment.resource.software && incident.assigment.resource.software.brand.name}}
             </li>
             <li class="list-center">
               <span class="material-icons">
                 arrow_drop_down_circle
               </span>
-              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.type}}
-              {{incident.assigment.resource.software && incident.assigment.resource.software.type}}
+              {{incident.assigment.resource.hardware && incident.assigment.resource.hardware.type.name}}
+              {{incident.assigment.resource.software && incident.assigment.resource.software.type.name}}
             </li>
           </ul>
           <button (click)="redirectToResource(incident)">

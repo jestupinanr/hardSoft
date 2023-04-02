@@ -14,7 +14,7 @@ export interface User {
 }
 
 export interface CreateUser extends Omit<User, 'id' | 'create_at' | 'update_at' > {
-  password: string
+  password?: string
 }
 
 export interface Rol {

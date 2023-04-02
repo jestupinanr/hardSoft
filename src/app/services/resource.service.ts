@@ -63,8 +63,24 @@ export class ResourceService {
     })
   }
 
+  public editardware (id: string, createHardware: CreateHardware): Observable<Hardware> {
+    return this.http.put<Hardware>(`${this.API_HARDSOFT}resources/hardware/${id}`, createHardware ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
   public createSoftware (createSoftware: CreateSoftware): Observable<Resources> {
     return this.http.post<Resources>(`${this.API_HARDSOFT}resources/software`, createSoftware ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public editSoftware (id: string, createSoftware: CreateSoftware): Observable<Software> {
+    return this.http.put<Software>(`${this.API_HARDSOFT}resources/software/${id}`, createSoftware ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }

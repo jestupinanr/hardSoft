@@ -31,6 +31,23 @@ export class UserService {
     })
   }
 
+  public editUser (id:string, createUser: CreateUser): Observable<User> {
+
+    const dataUser = {
+      ...createUser
+    }
+
+    if ( createUser.password === '')
+      delete dataUser.password
+
+    return this.http.put<User>(`${this.API_HARDSOFT}users/${id}`, dataUser,
+    {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
   public getAllUsers (): Observable<User[]> {
     return this.http.get<User[]>(`${this.API_HARDSOFT}users` ,{
       headers: {

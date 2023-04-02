@@ -21,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PersonRoutingModule,
   ],
   exports: [
-    SearchPageComponent
+    SearchPageComponent,
+    CreatePageComponent
   ],
 })
 export class PersonModule { }

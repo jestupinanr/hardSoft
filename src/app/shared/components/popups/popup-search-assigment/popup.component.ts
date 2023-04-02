@@ -26,5 +26,5 @@ export class PopupSearchAssigmentComponent implements OnInit {
 
   onClose(): void {
     this.dialogRef.close(this.assigment);
-}
+  }
 }

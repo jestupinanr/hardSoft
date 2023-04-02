@@ -24,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     SearchPageComponent,
-    CreatePageComponent
+    CreatePageComponent,
+    CreatePageComponentSf
   ],
 })
 export class ResourceModule { }

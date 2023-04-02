@@ -19,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IncidentRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+  ],
+  exports: [
+    CreatePageComponent
   ]
 })
 export class IncidentModule { }

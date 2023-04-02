@@ -21,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AssignmentRoutingModule
   ],
   exports: [
-    SearchPageComponent
+    SearchPageComponent,
+    CreatePageComponent
   ]
 })
 export class AssignmentModule { }

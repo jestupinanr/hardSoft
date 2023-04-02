@@ -10,22 +10,27 @@ import { Hardware, Resources } from '@core/models/resource/Resource.model';
 export class PopupEditHardwareComponent implements OnInit {
 
   status: boolean = false;
+  hasChanged: boolean = false;
+  hardware: Hardware;
   constructor(
     private dialogRef: MatDialogRef<PopupEditHardwareComponent>,
-    @Inject(MAT_DIALOG_DATA) public hardware: Hardware
-    ) {
-      console.log(hardware);
-      this.hardware = hardware;
-    }
+    @Inject(MAT_DIALOG_DATA) public data: {hardware: Hardware},
+    ) {}
 
   ngOnInit(): void {
   }
 
-  receiveId($event: Resources) {
+  receiveResource($event: Hardware) {
+    this.hasChanged = true;
+    this.hardware = $event;
     this.onClose();
   }
 
   onClose(): void {
-    console.log(this.hardware);
+    if (this.hasChanged)
+      this.dialogRef.close(this.hardware);
+    else {
+      this.dialogRef.close(this.data.hardware);
+    }
 }
 }

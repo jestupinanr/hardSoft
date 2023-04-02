@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BrandsResource, CreateHardware, Hardware, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
+import { BrandsResource, CreateHardware, Hardware, Resources, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
 import { ToastrService } from 'ngx-toastr';
 import { ResourceService } from 'src/app/services/resource.service';
 
@@ -22,7 +22,8 @@ export class CreatePageComponent implements OnInit {
   public formNewBrand: FormGroup = new FormGroup({});
   public formNewType: FormGroup = new FormGroup({});
   @Input()
-  public dataHardware?: Hardware;
+  public dataHardware: Hardware;
+  @Output() hardwareReturn = new EventEmitter<Hardware>();
 
   public formGroupinitial = {
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -38,20 +39,18 @@ export class CreatePageComponent implements OnInit {
     private resourceService: ResourceService,
     private toastr: ToastrService,
     private router:Router
-    ) {
+    ) {}
+
+   ngOnInit(): void {
     this.initFormParent();
-  }
-
-  ngOnInit(): void {
     this.getStatus();
-    this.getBrands();
-    this.getTypes();
   }
 
-  getStatus(): void {
-    this.resourceService.getStatus().subscribe(
+  async getStatus() {
+    await this.resourceService.getStatus().subscribe(
       (res) => {
         this.status = res;
+        this.getBrands();
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -60,11 +59,12 @@ export class CreatePageComponent implements OnInit {
       }
     );
   }
-  getBrands(): void {
-    this.resourceService.getBrandsHardware().subscribe(
+  async getBrands() {
+    await this.resourceService.getBrandsHardware().subscribe(
       (res) => {
         this.brands = res;
         this.showNewBrand = false;
+        this.getTypes();
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -74,11 +74,14 @@ export class CreatePageComponent implements OnInit {
     );
   }
 
-  getTypes(): void {
-    this.resourceService.getTypesHardware().subscribe(
+  async getTypes() {
+    await this.resourceService.getTypesHardware().subscribe(
       (res) => {
         this.types = res;
         this.showNewType = false;
+        if (this.dataHardware) {
+          this.initFormEdit();
+        }
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -102,11 +105,23 @@ export class CreatePageComponent implements OnInit {
     );
   }
 
-
   initFormParent(): void {
     this.formCreateHardware = new FormGroup(this.formGroupinitial);
     this.eventListenerNewBrand();
     this.eventListenerNewType();
+  }
+
+  initFormEdit(): void {
+    this.formCreateHardware.setValue({
+      ...this.formCreateHardware.value,
+      name: this.dataHardware.name,
+      status: this.dataHardware.status.id,
+      brand: this.dataHardware.brand.id,
+      model: this.dataHardware.model,
+      type: this.dataHardware.type.id,
+      observations: this.dataHardware.observations,
+      acquisitionDate: this.dataHardware.acquisitionDate.split('T')[0]
+    });
   }
 
   eventListenerNewBrand() {
@@ -177,8 +192,21 @@ export class CreatePageComponent implements OnInit {
         )
       }
     );
-  }
+  };
 
+  updateHardware(hardwareForm: CreateHardware) {
+    this.resourceService.editardware(this.dataHardware.id, hardwareForm).subscribe(
+      (res) => {
+        this.toastr.success('Hardware editado creado');
+        this.hardwareReturn.emit(res);
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    );
+  }
 
   onSubmit(event: Event): void {
     event.preventDefault();
@@ -190,7 +218,10 @@ export class CreatePageComponent implements OnInit {
       this.pushSubmit = true;
       if (this.formCreateHardware.valid) {
         const value: CreateHardware = this.formCreateHardware.value;
-        this.createHardware(value);
+        if (this.dataHardware)
+        this.updateHardware(value);
+        else
+          this.createHardware(value);
       }
     }
   }

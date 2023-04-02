@@ -22,7 +22,8 @@ export interface CreateIncident {
   title: string,
   assigment: string,
   incidentStatus: string,
-  description: string
+  description: string,
+  solution?: string
 }
 
 export interface SearchIncident {

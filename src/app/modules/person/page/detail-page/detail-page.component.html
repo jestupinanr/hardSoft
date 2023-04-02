@@ -17,6 +17,13 @@
       <div class="status">
         {{user.role.name}}
       </div>
+      <div>
+        <span
+          class="material-icons"
+          style="color: white; cursor: pointer;"
+          (click)="editPerson()"
+          >edit</span>
+      </div>
     </div>
 
     <div class="container-float">
@@ -53,7 +60,7 @@
                 <span class="material-icons">
                   cake
                 </span>
-                {{user.bornDate}}
+                {{user.bornDate.split('T')[0]}}
               </li>
               <li class="item-basic">
                 <span class="material-icons">

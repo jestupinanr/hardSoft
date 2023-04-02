@@ -61,6 +61,12 @@
           </div>
         </div>
       </div>
+      <div class="form-group"
+        *ngIf="formCreateIncident.controls['incidentStatus'].value === '711ca564-26ce-464f-b7b1-091f2398feef' || dataIncident"
+        >
+        <label class="label-form"> Solución aplicada</label>
+        <textarea class="text-text-form" formControlName="solution" placeholder="Ingresar la solución del incidente"></textarea>
+      </div>
 
       <!-- <div class="group-form">
 
@@ -103,7 +109,7 @@
       </div> -->
 
       <div class="button">
-        <button class="button-primary" type="submit"> Agregar </button>
+        <button class="button-primary" type="submit"> {{dataIncident ? 'Editar' : 'Agregar'}} </button>
       </div>
     </form>
   </div>

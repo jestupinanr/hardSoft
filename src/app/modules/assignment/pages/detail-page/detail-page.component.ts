@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Assigment } from '@core/models/assigment/Assigments.model';
+import { PopupEditAssigmentComponent } from '@shared/components/popups/popup-edit-assigment/popup-edit-assigment.component';
 import { ToastrService } from 'ngx-toastr';
 import { AssigmentService } from 'src/app/services/assigment.service';
 
@@ -12,7 +14,9 @@ import { AssigmentService } from 'src/app/services/assigment.service';
 export class DetailPageComponent implements OnInit {
 
   public assigment: Assigment;
+   popupResourceRef: MatDialogRef<PopupEditAssigmentComponent>;
   constructor(
+     private dialogRef: MatDialog,
     private route:ActivatedRoute,
     private toastr: ToastrService,
     private assigmentService: AssigmentService,
@@ -38,6 +42,26 @@ export class DetailPageComponent implements OnInit {
         }
       );
     }
+  };
+
+  openModalEditAssigment() {
+    this.popupResourceRef = this.dialogRef.open(PopupEditAssigmentComponent, {
+      data: { assigment: this.assigment },
+      minWidth: '90vw',
+      maxWidth: '90vw',
+      minHeight: '90vh',
+      maxHeight: '90vh'
+    });
+
+    this.popupResourceRef.afterClosed()
+    .subscribe((assigment : Assigment | undefined ) => {
+      if (assigment)
+        this.assigment = assigment;
+      })
+  };
+
+  editAssigment () {
+    this.openModalEditAssigment();
   }
 
 }

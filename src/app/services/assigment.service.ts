@@ -30,6 +30,14 @@ export class AssigmentService {
     })
   }
 
+  public editAssigment (id: string, createAssigment: createrAssigment): Observable<Assigment> {
+    return this.http.put<Assigment>(`${this.API_HARDSOFT}assigment/${id}`, createAssigment ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
   public getAllAssigments (): Observable<Assigment[]> {
     return this.http.get<Assigment[]>(`${this.API_HARDSOFT}assigment` ,{
       headers: {

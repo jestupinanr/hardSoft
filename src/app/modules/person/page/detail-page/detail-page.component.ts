@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Assigment } from '@core/models/assigment/Assigments.model';
 import { User } from '@core/models/user/User.model';
+import { PopupEditPersonComponent } from '@shared/components/popups/popup-edit-user/popup-edit-user.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/users.service';
 
@@ -14,12 +16,14 @@ export class DetailPageComponent implements OnInit {
 
   public user: User;
   public assigments: Assigment[] = [];
+  popupResourceRef: MatDialogRef<PopupEditPersonComponent>;
 
   constructor(
     private route:ActivatedRoute,
     private router:Router,
     private toastr: ToastrService,
     private userService: UserService,
+    private dialogRef: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +61,28 @@ export class DetailPageComponent implements OnInit {
     }
   };
 
+  openModalEditPerson () {
+    this.popupResourceRef = this.dialogRef.open(PopupEditPersonComponent, {
+      data: { person: this.user },
+      minWidth: '90vw',
+      maxWidth: '90vw',
+      minHeight: '90vh',
+      maxHeight: '90vh'
+    });
+
+    this.popupResourceRef.afterClosed()
+    .subscribe((user : User | undefined ) => {
+      if (user)
+        this.user = user;
+      })
+  };
+
   routerToResource (assigment: Assigment) {
     this.router.navigate(['/resource/detail', assigment.resource.id])
+  }
+
+  editPerson () {
+    this.openModalEditPerson()
   }
 
 }

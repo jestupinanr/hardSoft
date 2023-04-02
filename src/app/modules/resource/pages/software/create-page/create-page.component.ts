@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BrandsResource, CreateHardware, CreateSoftware, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
+import { BrandsResource, CreateHardware, CreateSoftware, Software, StatusResource, TypesResource } from '@core/models/resource/Resource.model';
 import { ToastrService } from 'ngx-toastr';
 import { ResourceService } from 'src/app/services/resource.service';
 
@@ -21,6 +21,9 @@ export class CreatePageComponent implements OnInit {
   public showNewType: boolean = false;
   public formNewBrand: FormGroup = new FormGroup({});
   public formNewType: FormGroup = new FormGroup({});
+  @Input()
+  public dataSoftware: Software;
+  @Output() softwareReturn = new EventEmitter<Software>();
 
   public formGroupInitial = {
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -36,18 +39,18 @@ export class CreatePageComponent implements OnInit {
     private resourceService: ResourceService,
     private toastr: ToastrService,
     private router:Router
-    ) {
-    this.initFormParent();
-  }
+    ) {}
 
   ngOnInit(): void {
-    this.getStatus()
+    this.initFormParent();
+    this.getStatus();
   }
 
   getStatus(): void {
     this.resourceService.getStatus().subscribe(
       (res) => {
         this.status = res;
+        this.getBrands();
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -62,6 +65,7 @@ export class CreatePageComponent implements OnInit {
       (res) => {
         this.brands = res;
         this.showNewBrand = false;
+        this.getTypes();
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -76,6 +80,9 @@ export class CreatePageComponent implements OnInit {
       (res) => {
         this.types = res;
         this.showNewType = false;
+        if (this.dataSoftware) {
+          this.initFormEdit();
+        }
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -104,6 +111,19 @@ export class CreatePageComponent implements OnInit {
     this.formCreateSoftware = new FormGroup(this.formGroupInitial);
     this.eventListenerNewBrand();
     this.eventListenerNewType();
+  }
+
+  initFormEdit(): void {
+    this.formCreateSoftware.setValue({
+      ...this.formCreateSoftware.value,
+      name: this.dataSoftware.name,
+      status: this.dataSoftware.status.id,
+      brand: this.dataSoftware.brand.id,
+      licenseNumber: this.dataSoftware.licenseNumber,
+      type: this.dataSoftware.type.id,
+      observations: this.dataSoftware.observations,
+      acquisitionDate: this.dataSoftware.acquisitionDate.split('T')[0]
+    });
   }
 
   eventListenerNewBrand() {
@@ -174,6 +194,21 @@ export class CreatePageComponent implements OnInit {
         )
       }
     );
+  };
+
+
+  updateSoftware(softwareForm: CreateSoftware) {
+    this.resourceService.editSoftware(this.dataSoftware.id, softwareForm).subscribe(
+      (res) => {
+        this.toastr.success('Software editado creado');
+        this.softwareReturn.emit(res);
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    );
   }
 
   onSubmit(event: Event): void {
@@ -185,9 +220,11 @@ export class CreatePageComponent implements OnInit {
     } else {
       this.pushSubmit = true;
       if (this.formCreateSoftware.valid) {
-        event.preventDefault();
         const value: CreateSoftware = this.formCreateSoftware.value;
-        this.createSoftware(value);
+        if (this.dataSoftware)
+        this.updateSoftware(value);
+        else
+          this.createSoftware(value);
       }
     }
   }

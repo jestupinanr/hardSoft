@@ -23,7 +23,31 @@ export class IncidentService {
   }
 
   public createIncident (createIncident: CreateIncident): Observable<incident> {
-    return this.http.post<incident>(`${this.API_HARDSOFT}incidents`, createIncident ,{
+    const dataIncident = {
+      ...createIncident
+    }
+
+    if ( createIncident.solution === null)
+      delete dataIncident.solution
+
+    return this.http.post<incident>(`${this.API_HARDSOFT}incidents`, dataIncident,
+    {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
+  public editIncident (id: string, createIncident: CreateIncident): Observable<incident> {
+    const dataIncident = {
+      ...createIncident
+    }
+
+    if ( createIncident.solution === null)
+      delete dataIncident.solution
+
+    return this.http.put<incident>(`${this.API_HARDSOFT}incidents/${id}`, dataIncident,
+    {
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }

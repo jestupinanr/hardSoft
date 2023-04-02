@@ -1,6 +1,3 @@
-export interface Hardware {
-}
-
 export interface StatusResource {
   id: string;
   name: string;
@@ -20,9 +17,9 @@ export interface Hardware {
   create_at: string,
   update_at: string,
   name: string,
-  brand: string,
+  brand: BrandsResource,
   model: string,
-  type: string,
+  type: TypesResource,
   observations: string,
   acquisitionDate: string,
   status: StatusResource
@@ -32,14 +29,15 @@ export interface CreateHardware extends Omit<Hardware, 'status' | 'create_at' | 
   status: string
 }
 
+
 export interface Software {
   id: string,
   create_at: string,
   update_at: string,
   name: string,
-  brand: string,
+  brand: BrandsResource,
   licenseNumber: string,
-  type: string,
+  type: TypesResource,
   observations: string,
   acquisitionDate: string,
   status: StatusResource

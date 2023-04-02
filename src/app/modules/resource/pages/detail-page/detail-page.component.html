@@ -12,11 +12,11 @@
     </div>
     <div class="information" *ngIf="resource.hardware">
       <span>{{resource.hardware.name}}</span>
-      <span>{{resource.hardware.type}}</span>
+      <span>{{resource.hardware.type.name}}</span>
     </div>
     <div class="information" *ngIf="resource.software">
       <span>{{resource.software.name}}</span>
-      <span>{{resource.software.type}}</span>
+      <span>{{resource.software.type.name}}</span>
     </div>
     <div class="status">
       {{resource.hardware?.status?.name}}
@@ -40,8 +40,8 @@
         <span>Fecha de adquisición</span>
       </div>
       <span>
-        {{resource.hardware?.acquisitionDate}}
-        {{resource.software?.acquisitionDate}}
+        {{resource.hardware && resource.hardware.acquisitionDate.split('T')[0] }}
+        {{resource.software && resource.software.acquisitionDate.split('T')[0]}}
       </span>
     </div>
     <!-- <div class="container-information-float w-50">
