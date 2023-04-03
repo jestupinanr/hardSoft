@@ -125,6 +125,10 @@
           display: flex;
           gap: 1rem;
           width: 10%;
+
+          span {
+            cursor: pointer;
+          }
         }
       }
     }

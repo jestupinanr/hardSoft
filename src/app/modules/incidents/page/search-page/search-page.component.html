@@ -19,7 +19,7 @@
       <div class="filter-item-search" *ngFor="let arrayFiltered of incidents">
         <span class="letter-filter">{{arrayFiltered.letter}}</span>
 
-        <div *ngFor="let item of arrayFiltered.incident" (click)="hanldeRedirect(item)">
+        <div *ngFor="let item of arrayFiltered.incident">
           <div class="item-search">
             <div class="icon-search">
               H
@@ -30,11 +30,11 @@
               <span class="information-col">{{item.incidentStatus.name}}</span>
             </div>
             <div class="options-search">
-              <span class="material-icons">
-                edit
+              <span class="material-icons" (click)="hanldeRedirect(item)">
+                visibility
               </span>
-              <span class="material-icons">
-                delete
+              <span class="material-icons" (click)="editIncidents(item)">
+                edit
               </span>
             </div>
           </div>

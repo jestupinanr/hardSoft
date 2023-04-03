@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SearchUser, User } from '@core/models/user/User.model';
+import { PopupEditPersonComponent } from '@shared/components/popups/popup-edit-user/popup-edit-user.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/users.service';
 
@@ -14,11 +16,13 @@ export class SearchPageComponent {
   @Input () value: boolean;
   public users: SearchUser[] = [];
   @Output() idUser = new EventEmitter<User>();
+  popupResourceRef: MatDialogRef<PopupEditPersonComponent>;
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
-    private router:Router
+    private router:Router,
+    private dialogRef: MatDialog,
   ) {
     this.getAllUsers()
   }
@@ -56,6 +60,28 @@ export class SearchPageComponent {
     }
   };
 
+  openModalEditPerson (item: User) {
+    this.popupResourceRef = this.dialogRef.open(PopupEditPersonComponent, {
+      data: { person: item },
+      minWidth: '90vw',
+      maxWidth: '90vw',
+      minHeight: '90vh',
+      maxHeight: '90vh'
+    });
+
+    this.popupResourceRef.afterClosed()
+    .subscribe((user : User | undefined ) => {
+      if (user)
+        this.users.map(item => {
+          const index = item.user.findIndex(item => item?.id === user.id);
+          if (index !== -1)
+            item.user[index] = {
+                ...user
+              }
+        });
+      })
+  };
+
   hanldeRedirect = (user: User) => {
     if (this.value) {
       this.idUser.emit(user);
@@ -63,5 +89,9 @@ export class SearchPageComponent {
       this.router.navigate(['/person/detail' , user.id])
     }
   };
+
+  editPerson (item: User) {
+    this.openModalEditPerson(item)
+  }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { incident, SearchIncident } from '@core/models/incident/Incident.model';
+import { PopupEditIncidentComponent } from '@shared/components/popups/popup-edit-incident/popup-edit-incident.component';
 import { ToastrService } from 'ngx-toastr';
 import { IncidentService } from 'src/app/services/incident.service';
 
@@ -12,10 +14,12 @@ import { IncidentService } from 'src/app/services/incident.service';
 export class SearchPageComponent implements OnInit {
 
   public incidents: SearchIncident[] = [];
+  popupResourceRef: MatDialogRef<PopupEditIncidentComponent>;
   constructor(
     private incidentService: IncidentService,
     private toastr: ToastrService,
-    private router:Router
+    private router:Router,
+    private dialogRef: MatDialog,
   ) {
     this.getAllIncidents()
   }
@@ -60,5 +64,31 @@ export class SearchPageComponent implements OnInit {
   hanldeRedirect = (incident: incident) => {
     this.router.navigate(['/incident/detail' , incident.id])
   };
+
+  openModaEditIncident (item: incident) {
+    this.popupResourceRef = this.dialogRef.open(PopupEditIncidentComponent, {
+      data: { incident: item },
+      minWidth: '90vw',
+      maxWidth: '90vw',
+      minHeight: '90vh',
+      maxHeight: '90vh'
+    });
+
+    this.popupResourceRef.afterClosed()
+    .subscribe((incident : incident | undefined ) => {
+      if (incident)
+        this.incidents.map(item => {
+          const index = item.incident.findIndex(item => item?.id === incident.id);
+          if (index !== -1)
+            item.incident[index] = {
+                ...incident
+              }
+        });
+      })
+  };
+
+  editIncidents (item: incident) {
+    this.openModaEditIncident(item);
+  }
 
 }

@@ -5,6 +5,8 @@ import { BrandsResource, CreateHardware, CreateSoftware, Hardware, Resources, So
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '@core/models/user/User.model';
 import { Assigment } from '@core/models/assigment/Assigments.model';
+import { reportForm } from '@core/models/report';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -149,5 +151,93 @@ export class ResourceService {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }
     })
+  };
+
+  public getReportExcelHardware (value: reportForm) {
+    this.http.get(`${this.API_HARDSOFT}resources/hardware/report/hardware?dateStart=${moment(value.dateStart).format('YYYY-MM-DD')}&dateEnd=${moment(value.dateEnd).format('YYYY-MM-DD')}`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      },
+      observe: 'response', responseType: 'blob' as 'json'
+    }).subscribe((res) => {
+      // Parse data to file
+      const file = new Blob([res.body as BlobPart]);
+
+      // Create file url
+      const url = URL.createObjectURL(file);
+
+      // Create name excel
+      const date = new Date();
+      let dateToday = '';
+
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
+      if (month < 10)
+        dateToday = `${day}-0${month}-${year}`;
+      else
+        dateToday = `${day}-${month}-${year}`;
+      // Create an anchor and set the URL
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = url;
+      link.download = `${dateToday}.xlsx`;
+
+      // Add anchor to the DOM
+      document.body.appendChild(link);
+      link.click();
+
+      setTimeout(() => {
+        URL.revokeObjectURL(link.href);
+        if (link.parentNode) link.parentNode.removeChild(link);
+      }, 0);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public getReportExcelSoftware (value: reportForm) {
+    this.http.get(`${this.API_HARDSOFT}resources/software/report/software?dateStart=${moment(value.dateStart).format('YYYY-MM-DD')}&dateEnd=${moment(value.dateEnd).format('YYYY-MM-DD')}`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      },
+      observe: 'response', responseType: 'blob' as 'json'
+    }).subscribe((res) => {
+      // Parse data to file
+      const file = new Blob([res.body as BlobPart]);
+
+      // Create file url
+      const url = URL.createObjectURL(file);
+
+      // Create name excel
+      const date = new Date();
+      let dateToday = '';
+
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
+      if (month < 10)
+        dateToday = `${day}-0${month}-${year}`;
+      else
+        dateToday = `${day}-${month}-${year}`;
+      // Create an anchor and set the URL
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = url;
+      link.download = `${dateToday}.xlsx`;
+
+      // Add anchor to the DOM
+      document.body.appendChild(link);
+      link.click();
+
+      setTimeout(() => {
+        URL.revokeObjectURL(link.href);
+        if (link.parentNode) link.parentNode.removeChild(link);
+      }, 0);
+    }, (error) => {
+      console.log(error);
+    });
   }
 }

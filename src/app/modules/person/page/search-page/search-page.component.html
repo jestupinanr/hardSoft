@@ -18,8 +18,8 @@
     <div class="container-result">
       <div class="filter-item-search" *ngFor="let arrayFiltered of users">
         <span class="letter-filter">{{arrayFiltered.letter}}</span>
-        <div *ngFor="let item of arrayFiltered.user" (click)="hanldeRedirect(item)">
-          <div class="item-search">
+        <div *ngFor="let item of arrayFiltered.user">
+          <div class="item-search" (click)="value && hanldeRedirect(item)">
             <div class="icon-search">
               {{item.name.slice(0, 1)}}
             </div>
@@ -29,11 +29,11 @@
               <span class="information-col">{{item.role.name}}</span>
             </div>
             <div class="options-search">
-              <span class="material-icons">
-                edit
+              <span class="material-icons" (click)="hanldeRedirect(item)">
+                visibility
               </span>
-              <span class="material-icons">
-                delete
+              <span class="material-icons" (click)="editPerson(item)" *ngIf="!value">
+                edit
               </span>
             </div>
           </div>

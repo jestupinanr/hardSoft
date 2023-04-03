@@ -18,22 +18,22 @@
   <div class="container-result">
     <div class="filter-item-search" *ngFor="let arrayFiltered of assigments">
       <span class="letter-filter">{{arrayFiltered.letter}}</span>
-      <div *ngFor="let item of arrayFiltered.assigment" (click)="hanldeRedirect(item)">
-        <div class="item-search">
+      <div *ngFor="let item of arrayFiltered.assigment">
+        <div class="item-search" (click)="value && hanldeRedirect(item)">
           <div class="icon-search">
             {{item.user.name.slice(0,1)}}
           </div>
           <div class="information-search">
             <span class="information-col">{{item.user.name}} {{item.user.lastName}}</span>
             <span class="information-col">{{item.resource.hardware ? item.resource.hardware.name : item.resource.software?.name}}</span>
-            <span class="information-col">{{item.create_at}}</span>
+            <span class="information-col">{{item.create_at.split('T')[0]}}</span>
           </div>
           <div class="options-search">
-            <span class="material-icons">
-              edit
+            <span class="material-icons" (click)="hanldeRedirect(item)">
+              visibility
             </span>
-            <span class="material-icons">
-              delete
+            <span class="material-icons" (click)="editAssigment(item)" *ngIf="!value">
+              edit
             </span>
           </div>
         </div>

@@ -14,9 +14,9 @@ import { AssigmentService } from 'src/app/services/assigment.service';
 export class DetailPageComponent implements OnInit {
 
   public assigment: Assigment;
-   popupResourceRef: MatDialogRef<PopupEditAssigmentComponent>;
+  popupResourceRef: MatDialogRef<PopupEditAssigmentComponent>;
   constructor(
-     private dialogRef: MatDialog,
+    private dialogRef: MatDialog,
     private route:ActivatedRoute,
     private toastr: ToastrService,
     private assigmentService: AssigmentService,
