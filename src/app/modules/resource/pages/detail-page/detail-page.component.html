@@ -44,15 +44,18 @@
         {{resource.software && resource.software.acquisitionDate.split('T')[0]}}
       </span>
     </div>
-    <!-- <div class="container-information-float w-50">
+    <div class="container-information-float w-50">
       <div class="title-contain-information">
         <span class="material-icons">
           calendar_month
         </span>
-        <span>Fecha de culminación</span>
+        <span>Fecha de renovación</span>
       </div>
-      <span> 15/03/2024 </span>
-    </div> -->
+      <span>
+        {{resource.hardware && resource.hardware.renovationDate.split('T')[0] }}
+        {{resource.software && resource.software.renovationDate.split('T')[0]}}
+      </span>
+    </div>
   </div>
 
   <div class="container-float">

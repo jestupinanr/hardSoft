@@ -33,6 +33,7 @@ export class CreatePageComponent implements OnInit {
     type: new FormControl('', [Validators.required]),
     observations: new FormControl('', [Validators.required, Validators.minLength(2)]),
     acquisitionDate: new FormControl('', [Validators.required]),
+    renovationDate: new FormControl('', [Validators.required]),
   }
 
   constructor(
@@ -120,7 +121,8 @@ export class CreatePageComponent implements OnInit {
       model: this.dataHardware.model,
       type: this.dataHardware.type.id,
       observations: this.dataHardware.observations,
-      acquisitionDate: this.dataHardware.acquisitionDate.split('T')[0]
+      acquisitionDate: this.dataHardware.acquisitionDate.split('T')[0],
+      renovationDate: this.dataHardware.renovationDate.split('T')[0]
     });
   }
 

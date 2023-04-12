@@ -22,7 +22,8 @@ export interface Hardware {
   type: TypesResource,
   observations: string,
   acquisitionDate: string,
-  status: StatusResource
+  status: StatusResource,
+  renovationDate: string
 }
 
 export interface CreateHardware extends Omit<Hardware, 'status' | 'create_at' | 'update_at' | 'id'> {
@@ -40,7 +41,8 @@ export interface Software {
   type: TypesResource,
   observations: string,
   acquisitionDate: string,
-  status: StatusResource
+  status: StatusResource,
+  renovationDate: string
 }
 
 export interface CreateSoftware extends Omit<Software, 'status' | 'create_at' | 'update_at' | 'id'> {

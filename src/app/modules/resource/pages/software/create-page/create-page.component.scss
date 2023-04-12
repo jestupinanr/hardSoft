@@ -1,4 +1,5 @@
 .container{
+
   display: flex;
   flex-direction: column;
   padding-top: 8rem;
@@ -7,6 +8,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
+
+  .alert{
+    color: #DF2F44;
+    font-size: 14px;
+    font-weight: 800;
+  }
 
   .pencil{
     position: absolute;
@@ -43,12 +50,6 @@
 
       .form-group{
         width: 50%;
-
-        .alert{
-          color: #DF2F44;
-          font-size: 14px;
-          font-weight: 800;
-        }
       }
     }
     .group-form-half{

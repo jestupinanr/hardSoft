@@ -8,10 +8,10 @@
     </div>
 
     <div class="container-search">
-      <input type="text" class="input-search" placeholder="Buscar usuario" />
+      <input type="text" class="input-search" placeholder="Buscar usuario" (change)="getDataSearch($event)"/>
       <div class="button-container">
         <button class="button-primary button-size">Buscar</button>
-        <button class="button-secondary button-size">Limpiar</button>
+        <button class="button-secondary button-size" (click)="clearSearch()">Limpiar</button>
       </div>
     </div>
 

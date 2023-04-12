@@ -97,6 +97,14 @@ export class ResourceService {
     });
   }
 
+  public getResourcesSearch (query:string): Observable<Resources[]> {
+    return this.http.get<Resources[]>(`${this.API_HARDSOFT}resources?filter=${query}` ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    });
+  }
+
   public getOneResourceById (id:string): Observable<Resources> {
     return this.http.get<Resources>(`${this.API_HARDSOFT}resources/get-one/${id}`)
   }

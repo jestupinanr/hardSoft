@@ -112,6 +112,15 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <label class="label-form"> Fecha de renovación</label>
+        <input class="input-text-form" formControlName="renovationDate" type="date" placeholder="Seleccione la fecha de renovación"/>
+        <div *ngIf="formCreateSoftware.controls['renovationDate'].invalid && pushSubmit" class="alert">
+          <div *ngIf="formCreateSoftware.controls['renovationDate'].errors">
+            Debes seleccionar una fecha de creación
+          </div>
+        </div>
+      </div>
     </div>
     <div class="button">
       <button class="button-primary" type="submit">{{softwareReturn ? 'Editar' : 'Agregar'}}</button>

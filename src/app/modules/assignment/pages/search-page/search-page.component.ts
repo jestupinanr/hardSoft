@@ -94,4 +94,9 @@ export class SearchPageComponent {
     this.openModalEditAssigment(item);
   }
 
+  getDataSearch (e: any) {
+    console.log(e);
+
+  }
+
 }

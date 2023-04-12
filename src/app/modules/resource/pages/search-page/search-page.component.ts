@@ -45,6 +45,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   organiceElements (res: Resources[]) {
+    this.resources = [];
     const initial: string[] = res.map((objet) => {
       if (objet.hardware)
         return objet.hardware.name.charAt(0).toUpperCase()
@@ -125,6 +126,19 @@ export class SearchPageComponent implements OnInit {
      this.openModalResourceHardware(item)
      else
        this.openModalResourceSoftware(item)
-     }
+  }
+
+  getDataSearch (e: any) {
+    this.resourceService.getResourcesSearch(e.target.value).subscribe(
+      (res) => {
+        this.organiceElements(res)
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    )
+  }
 
 }

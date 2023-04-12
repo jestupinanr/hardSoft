@@ -102,6 +102,14 @@ export class UserService {
     });
   }
 
+  public getUsersQueries (query: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_HARDSOFT}users?filter=${query}` ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    });
+  }
+
   public getOneUserById (id:string): Observable<User> {
     return this.http.get<User>(`${this.API_HARDSOFT}users/${id}`)
   }

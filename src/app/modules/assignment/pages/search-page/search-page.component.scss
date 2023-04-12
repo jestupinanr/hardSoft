@@ -34,17 +34,18 @@
     gap: 2rem;
     justify-content: space-between;
 
+
     .input-search{
       background-color: var(--color-third);
       border: 0;
       border-radius: 20px;
       padding: 0.7rem 2rem;
       width: 50%;
+      color: white;
 
       &::placeholder{
         color: var(--text-white);
       }
-
     }
 
     .button-container {

@@ -41,6 +41,7 @@ export class SearchPageComponent {
   };
 
   organiceElements (res: User[]) {
+    this.users = [];
     const initial: string[] = res.map((objet) => objet.name.charAt(0).toUpperCase());
 
     const filtered: Record<string, SearchUser> = {};
@@ -93,5 +94,34 @@ export class SearchPageComponent {
   editPerson (item: User) {
     this.openModalEditPerson(item)
   }
+
+  getDataSearch (e: any) {
+    this.userService.getUsersQueries(e.target.value).subscribe(
+      (res) => {
+        this.organiceElements(res)
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    )
+  }
+
+  clearSearch () {
+    console.log('entre');
+
+    this.userService.getUsersQueries('').subscribe(
+      (res) => {
+        this.organiceElements(res)
+      },
+      (error) => {
+        error.error.message.map((msg:string) =>
+          this.toastr.error(msg)
+        )
+      }
+    )
+  }
+
 
 }
