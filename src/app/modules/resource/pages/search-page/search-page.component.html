@@ -20,10 +20,10 @@
       <span class="letter-filter">{{arrayFiltered.letter}}</span>
       <div *ngFor="let item of arrayFiltered.resources">
         <div class="item-search" (click)="value && hanldeRedirect(item)">
-          <div class="icon-search" *ngIf="item.hardware !== null">
+          <div [ngClass]="item.isAssigned === 0 ? 'icon-search-available' : 'icon-search-failed'" *ngIf="item.hardware !== null">
             H
           </div>
-          <div class="icon-search" *ngIf="item.software !== null">
+          <div [ngClass]="item.isAssigned === 0 ? 'icon-search-available' : 'icon-search-failed'" *ngIf="item.software !== null">
             S
           </div>
           <div class="information-search">

@@ -66,7 +66,7 @@
                 <span class="material-icons">
                   calendar_month
                 </span>
-                TODO: 21 Años
+                {{agePerson}} Años
               </li>
             </ul>
           </div>
@@ -80,22 +80,19 @@
           <span>Recursos asignados</span>
         </div>
         <div *ngFor="let item of assigments">
-          <div class="item-search" (onClick)="routerToResource(item)">
+          <div class="item-search">
             <div class="icon-search">
               {{item.resource.hardware ? 'H' : 'S' }}
             </div>
             <div class="information-search">
-             <span class="information-col">
+             <span class="information-col" (click)="routerToResource(item)">
               {{item.resource.hardware && item.resource.hardware.name}}
               {{item.resource.software && item.resource.software.name}}
             </span>
             </div>
             <div class="options-search">
-              <span class="material-icons">
+              <span class="material-icons" (click)="routerToAssigment(item.id)">
                 edit
-              </span>
-              <span class="material-icons">
-                delete
               </span>
             </div>
           </div>

@@ -42,13 +42,19 @@
     </div>
     <div class="form-group">
       <label class="label-form"> Descripcion</label>
-      <textarea class="text-text-form" formControlName="description" placeholder="Ingresar la descripcion del incidente"></textarea>
+      <textarea class="text-text-form" formControlName="description" placeholder="Ingresar la descripcion de la asignación"></textarea>
       <div *ngIf="formCreateAssigment.controls['description'].invalid && pushSubmit" class="alert">
         <div *ngIf="formCreateAssigment.controls['description'].errors">
           La descripción debe tener mas de 5 caracteres
         </div>
       </div>
     </div>
+    <div class="form-group"
+        *ngIf="dataAssigment"
+        >
+        <label class="label-form">Fecha de devolución</label>
+        <input class="text-text-form" formControlName="returnDate" type="date">
+      </div>
 
     <div class="button">
       <button class="button-primary" type="submit"> {{dataAssigment ? 'Editar' : 'Agregar'}}</button>

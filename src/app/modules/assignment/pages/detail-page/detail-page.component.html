@@ -53,7 +53,7 @@
         <span>Fecha de asignación</span>
       </div>
       <span>
-        {{assigment.create_at}}
+        {{assigment.create_at.split('T')[0]}}
       </span>
     </div>
     <div class="container-information-float w-50">
@@ -63,7 +63,7 @@
         </span>
         <span>Fecha de devolución</span>
       </div>
-      <span> TODO </span>
+      <span> {{assigment.returnDate ?  assigment.returnDate.split('T')[0] : 'No devuelto'}} </span>
     </div>
   </div>
 

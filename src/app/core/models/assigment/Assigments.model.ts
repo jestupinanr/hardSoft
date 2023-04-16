@@ -7,13 +7,15 @@ export interface Assigment {
   update_at: string,
   description: string,
   user: User,
-  resource: Resources
+  resource: Resources,
+  returnDate?: string
 }
 
 export interface createrAssigment {
-  user: string,
+  user: string;
   resource: string;
-  description: string
+  description: string;
+  returnDate?: string
 }
 
 export interface SearchAssigment {

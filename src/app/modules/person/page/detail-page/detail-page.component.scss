@@ -142,11 +142,13 @@
         }
        .information-col{
         margin-right: 10%;
+        cursor: pointer;
         }
         .options-search{
           color: var(--text-white);
           display: flex;
           gap: 1rem;
+          cursor: pointer;
         }
       }
     }

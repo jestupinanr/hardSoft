@@ -83,16 +83,13 @@
             {{assigment.user.name.slice(0,1)}}
           </div>
           <div class="information-search">
-           <span class="information-col">
+           <span class="information-col" (click)="handleGoToPerson(assigment.user.id)">
             {{assigment.user.name}} {{assigment.user.lastName}}
           </span>
           </div>
           <div class="options-search">
-            <span class="material-icons">
+            <span class="material-icons" (click)="handleGoToAssigment(assigment)">
               edit
-            </span>
-            <span class="material-icons">
-              delete
             </span>
           </div>
         </div>

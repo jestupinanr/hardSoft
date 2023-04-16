@@ -30,6 +30,7 @@ export class CreatePageComponent implements OnInit, AfterContentInit {
     user: new FormControl('', [Validators.required]),
     resource: new FormControl('', [Validators.required]),
     description:  new FormControl('', [Validators.required, Validators.minLength(5)]),
+    returnDate: new FormControl('',[])
   }
 
   constructor(
@@ -132,7 +133,8 @@ export class CreatePageComponent implements OnInit, AfterContentInit {
       ...this.formCreateAssigment.value,
       user: this.dataAssigment.user.id,
       resource: this.dataAssigment.resource.id,
-      description:  this.dataAssigment.description,
+      description: this.dataAssigment.description,
+      returnDate: this.dataAssigment.returnDate
     });
   };
 

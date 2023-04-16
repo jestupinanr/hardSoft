@@ -55,7 +55,7 @@
               {{incident.assigment.user.phone1}}
             </li>
           </ul>
-          <button (click)="redirectToUser(incident)">
+          <button (click)="redirectToUser(incident)" class="button-primary">
             Ir al perfil
           </button>
         </div>
@@ -87,7 +87,7 @@
               {{incident.assigment.resource.software && incident.assigment.resource.software.type.name}}
             </li>
           </ul>
-          <button (click)="redirectToResource(incident)">
+          <button (click)="redirectToResource(incident)" class="button-primary">
             Ir al recurso
           </button>
         </div>

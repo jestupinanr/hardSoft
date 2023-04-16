@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Assigment } from '@core/models/assigment/Assigments.model';
 import { Hardware, Resources, Software } from '@core/models/resource/Resource.model';
 import { PopupEditHardwareComponent } from '@shared/components/popups/popup-edit-hardware/popup-edit-hardware.component';
@@ -24,7 +24,8 @@ export class DetailPageComponent implements OnInit {
     private dialogRef: MatDialog,
     private route:ActivatedRoute,
     private toastr: ToastrService,
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private router:Router,
   ) {}
 
   ngOnInit(): void {
@@ -101,5 +102,14 @@ export class DetailPageComponent implements OnInit {
     else
       this.openModalResourceSoftware()
     }
+
+    handleGoToAssigment(assigment: Assigment) {
+      this.router.navigate(['/assignment/detail/' , assigment.id])
+    }
+
+    handleGoToPerson(idUser: string) {
+      this.router.navigate(['/person/detail//' , idUser])
+    }
+
 
 }

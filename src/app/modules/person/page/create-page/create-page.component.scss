@@ -8,6 +8,10 @@
     align-items: center;
     position: relative;
 
+    .calendar-field-icon::-webkit-calendar-picker-indicator {
+      color: white;
+    }
+
     .pencil{
       position: absolute;
       right: 0;

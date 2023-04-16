@@ -17,6 +17,7 @@ export class DetailPageComponent implements OnInit {
   public user: User;
   public assigments: Assigment[] = [];
   popupResourceRef: MatDialogRef<PopupEditPersonComponent>;
+  public agePerson: number
 
   constructor(
     private route:ActivatedRoute,
@@ -38,6 +39,7 @@ export class DetailPageComponent implements OnInit {
       this.userService.getOneUserById(id).subscribe(
         (res) => {
           this.user = res;
+          this.calculateAgePerson(res);
         },
         (error) => {
           error.error.message.map((msg:string) =>
@@ -61,6 +63,17 @@ export class DetailPageComponent implements OnInit {
     }
   };
 
+  calculateAgePerson(user: User) {
+    const hoy = new Date();
+    const fechaNac = new Date(user.bornDate);
+    let edad = hoy.getFullYear() - fechaNac.getFullYear();
+    const mes = hoy.getMonth() - fechaNac.getMonth();
+    if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+      edad--;
+    }
+    this.agePerson = edad;
+  }
+
   openModalEditPerson () {
     this.popupResourceRef = this.dialogRef.open(PopupEditPersonComponent, {
       data: { person: this.user },
@@ -83,6 +96,10 @@ export class DetailPageComponent implements OnInit {
 
   editPerson () {
     this.openModalEditPerson()
+  }
+
+  routerToAssigment (idAssigment: string) {
+    this.router.navigate(['/assignment/detail/', idAssigment])
   }
 
 }

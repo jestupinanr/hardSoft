@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Assigment, createrAssigment } from '@core/models/assigment/Assigments.model';
 import * as moment from 'moment';
 import { reportForm } from '@core/models/report';
+import { ResourceService } from './resource.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,11 @@ export class AssigmentService {
 
   private API_HARDSOFT = "http://localhost:3000/"
 
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private resourceService: ResourceService
+    ) { }
 
   // public getStatus (): Observable<StatusResource[]> {
   //   return this.http.get<StatusResource[]>(`${this.API_HARDSOFT}resources/status`, {
@@ -25,6 +30,7 @@ export class AssigmentService {
   // }
 
   public createAssigment (createAssigment: createrAssigment): Observable<Assigment> {
+    this.resourceService.changeResourceStatus(createAssigment.resource, 1);
     return this.http.post<Assigment>(`${this.API_HARDSOFT}assigment`, createAssigment ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
@@ -33,6 +39,22 @@ export class AssigmentService {
   }
 
   public editAssigment (id: string, createAssigment: createrAssigment): Observable<Assigment> {
+    console.log('entre x2');
+    console.log(createAssigment);
+
+    if (createAssigment.hasOwnProperty('returnDate')) {
+      console.log('engtre');
+      const a = this.resourceService.changeResourceStatus(createAssigment.resource, 0).subscribe(
+        (res) => {
+          console.log(res);
+          return this.http.put<Assigment>(`${this.API_HARDSOFT}assigment/${id}`, createAssigment ,{
+            headers: {
+              Authorization: `Bearer ${this.cookieService.get('token')}`
+            }
+          })
+        }
+      );
+    }
     return this.http.put<Assigment>(`${this.API_HARDSOFT}assigment/${id}`, createAssigment ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
