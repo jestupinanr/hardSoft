@@ -28,22 +28,32 @@
 
   .container-form{
     background-color: var(--color-third);
-    padding: 2rem 2rem;
-    border-radius: 20px;
-    width: 50rem;
+  padding: 2rem 2rem;
+  border-radius: 20px;
+  width: 20rem;
+  display: block;
+  flex-direction: column;
+  gap: 2rem;
+  @media screen and (min-width: 900px) {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
+    width: 50rem;
+  }
     .group-form{
-      display: flex;
-      justify-content: space-between;
+      display: block;
       width: 100%;
-      gap: 4rem;
-
+      @media screen and (min-width: 900px) {
+        width: 100%;
+        justify-content: space-between;
+        gap: 4rem;
+        display: flex;
+      }
       .form-group{
-        width: 50%;
-
+        width: 100%;
+        margin-top: 5%;
+          @media screen and (min-width: 900px) {
+            width: 50%;
+            margin: auto;
+          }
         .alert{
           color: #DF2F44;
           font-size: 14px;
@@ -51,6 +61,7 @@
         }
       }
     }
+   
 .group-form-half{
   display: flex;
   width: 50%;
@@ -61,7 +72,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
+    margin-top: 5%;
+      @media screen and (min-width: 900px) {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .button-primary{
         padding: 0.5rem 1.8rem;
       }

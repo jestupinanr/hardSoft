@@ -1,5 +1,4 @@
 .container{
-
   display: flex;
   flex-direction: column;
   padding-top: 8rem;
@@ -37,33 +36,58 @@
     background-color: var(--color-third);
     padding: 2rem 2rem;
     border-radius: 20px;
-    width: 55rem;
-    display: flex;
+    width: 20rem;
+    display: block;
     flex-direction: column;
     gap: 2rem;
-
-    .group-form{
+    @media screen and (min-width: 900px) {
       display: flex;
-      justify-content: space-between;
+      width: 50rem;
+    }
+    .group-form{
+      display: block;
       width: 100%;
-      gap: 4rem;
-
+      @media screen and (min-width: 900px) {
+        width: 100%;
+        justify-content: space-between;
+        gap: 4rem;
+        display: flex;
+      }
       .form-group{
+        width: 100%;
+        margin-top: 5%;
+      }
+      @media screen and (min-width: 900px) {
         width: 50%;
+        margin: auto;
       }
     }
     .group-form-half{
-      display: flex;
-      width: 50%;
+      width: 100%;
+      @media screen and (min-width: 900px) {
+        display: flex;
+        width: 50%;
       justify-content: space-between;
       gap: 3rem;
-    }
-
+      }
+  }
+  .form-group {
+    margin-top: 5%;
+  }
+  .form-group input{
+    width: auto;
+  }
     .button{
       display: flex;
       justify-content: center;
       align-items: center;
-
+    margin-top: 5%;
+      @media screen and (min-width: 900px) {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .button-primary{
         padding: 0.5rem 1.8rem;
       }
