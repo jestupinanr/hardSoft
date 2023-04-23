@@ -15,6 +15,7 @@ export class DetailPageComponent implements OnInit {
 
   public assigment: Assigment;
   popupResourceRef: MatDialogRef<PopupEditAssigmentComponent>;
+
   constructor(
     private dialogRef: MatDialog,
     private route:ActivatedRoute,

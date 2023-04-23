@@ -32,7 +32,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   getResources = () => {
-    this.resourceService.getAllResources().subscribe(
+    this.resourceService.getAllResources(this.value === true).subscribe(
       (res) => {
         this.organiceElements(res)
       },

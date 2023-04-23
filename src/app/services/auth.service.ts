@@ -18,4 +18,16 @@ export class AuthService {
       ...dataLogin
     })
   }
+
+  public getTokenRecoveryPassword(email: string): Observable<{user: User , token: string}> {
+    return this.http.post<{user: User , token: string}>(`${this.API_HARDSOFT}auth/recovery/get-token`, {
+      email
+    })
+  }
+
+  public savePassword(password: string, token: string): Observable<{user: User , token: string}> {
+    return this.http.post<{user: User , token: string}>(`${this.API_HARDSOFT}auth/recovery/${token}`, {
+      password
+    })
+  }
 }

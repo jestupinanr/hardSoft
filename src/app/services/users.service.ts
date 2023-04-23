@@ -33,6 +33,14 @@ export class UserService {
     })
   }
 
+  public uploadPhotoUser (formPhoto: FormData): Observable<{ route: string }> {
+    return this.http.post<{ route: string }>(`${this.API_HARDSOFT}upload/imagen`, formPhoto ,{
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`
+      }
+    })
+  }
+
   public getReportExcel (value: reportForm) {
     this.http.get(`${this.API_HARDSOFT}users/report/persons?dateStart=${moment(value.dateStart).format('YYYY-MM-DD')}&dateEnd=${moment(value.dateEnd).format('YYYY-MM-DD')}`, {
       headers: {

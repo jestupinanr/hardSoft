@@ -8,7 +8,7 @@
 
     <div class="basic-information">
       <div class="icon">
-        <img src="../../../../../assets/vectors/profilePreterminate.svg"/>
+        <img [src]="urlProfile ? urlProfile : '../../../../../assets/vectors/profilePreterminate.svg'" class="rounded-image-profile"/>
       </div>
       <div class="information">
         <span>{{user.name}} {{user.lastName}}</span>
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div class="container-float">
+    <div class="container-float" *ngIf="assigments.length > 0">
       <div class="container-information-float w-100">
         <div class="title-contain-information">
           <span>Recursos asignados</span>

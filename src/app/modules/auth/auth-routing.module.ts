@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'recovery-password',
     component: RecoveryPasswordPageComponent,
+  },
+  {
+    path: 'recovery-password/:id',
+    component: RecoveryPasswordPageComponent,
   }
 ];
 

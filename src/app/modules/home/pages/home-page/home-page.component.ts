@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomePageComponent implements OnInit {
 
   statusSideBar: boolean = false;
+  showSidebar: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +16,10 @@ export class HomePageComponent implements OnInit {
 
   getStatusSideBar(status: boolean): void {
     this.statusSideBar = status;
+  }
+
+  sidebarStatus(event: boolean): void {
+    this.showSidebar = event;
   }
 
 }

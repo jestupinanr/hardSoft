@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SideBarModel } from '@core/models/sidebar.model';
+import { SharedServiceService } from 'src/app/shared-service.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -102,6 +103,7 @@ export class SideBarComponent implements OnInit {
         originalItem.open = !originalItem.open
     })
   }
+
 
   showHideSidebar():void {
     this.showNavBar = !this.showNavBar;

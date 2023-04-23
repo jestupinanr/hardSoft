@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header (sidebarStatus)="sidebarStatus($event)"></app-header>
 <div class="container-all">
-  <app-side-bar (messageFather)="getStatusSideBar($event)"></app-side-bar>
+  <app-side-bar (messageFather)="getStatusSideBar($event)" [ngClass]="showSidebar ? 'show' : 'hiden'"></app-side-bar>
   <div class="container-all-content" [ngClass]="statusSideBar ? 'w-75' : 'w-90'">
     <router-outlet></router-outlet>
   </div>

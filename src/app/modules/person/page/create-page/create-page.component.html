@@ -89,22 +89,19 @@
             </div>
           </div>
         </div>
-        <!-- <div class="group-form-half">
-          <div class="form-group">
-            <label class="label-form"> Usuario </label>
-            <span>usuario</span>
-          </div>
-          <div class="form-group">
-            <label class="label-form"> Contraseña </label>
-            <span>H2d9lr6g</span>
-          </div>
-        </div> -->
       </div>
       <div class="group-form">
         <div class="form-group">
           <label class="label-form"> Contraseña</label>
           <input class="text-text-form" formControlName="password" placeholder="Ingrese la contraseña" type="password"/>
         </div>
+        <div class="form-group">
+          <label class="label-form"> Imagen</label>
+          <input class="text-text-form" (change)="handleGetPhoto($event)" type="file"/>
+        </div>
+      </div>
+      <div *ngIf="preview" class="itens-center">
+        <img [src]="preview" alt="imageProfile" class="rounded-full-profile"/>
       </div>
       <div class="button">
         <button class="button-primary" type="submit"> {{dataUser ? 'Editar' : 'Agregar'}} </button>

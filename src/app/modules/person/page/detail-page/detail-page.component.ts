@@ -17,7 +17,8 @@ export class DetailPageComponent implements OnInit {
   public user: User;
   public assigments: Assigment[] = [];
   popupResourceRef: MatDialogRef<PopupEditPersonComponent>;
-  public agePerson: number
+  public agePerson: number;
+  public urlProfile: string;
 
   constructor(
     private route:ActivatedRoute,
@@ -39,6 +40,8 @@ export class DetailPageComponent implements OnInit {
       this.userService.getOneUserById(id).subscribe(
         (res) => {
           this.user = res;
+          if (res.picture)
+            this.urlProfile = `http://localhost:3000${res.picture}`;
           this.calculateAgePerson(res);
         },
         (error) => {

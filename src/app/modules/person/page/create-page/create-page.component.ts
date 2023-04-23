@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CreateUser, Rol, User } from '@core/models/user/User.model';
 import { ToastrService } from 'ngx-toastr';
@@ -18,6 +19,8 @@ export class CreatePageComponent implements OnInit {
   @Input()
   public dataUser: User;
   @Output() userReturn = new EventEmitter<User>();
+  public photo: File;
+  public preview: string;
 
   public formGroupinitial = {
     nit: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -29,12 +32,14 @@ export class CreatePageComponent implements OnInit {
     phone1: new FormControl('', [Validators.required, Validators.minLength(8)]),
     address: new FormControl('', [Validators.required, Validators.minLength(6)]),
     bornDate: new FormControl('', [Validators.required]),
+    picture: new FormControl('')
   };
 
   constructor(
     private userService: UserService,
     private router:Router,
     private toastr: ToastrService,
+    private sanitizer: DomSanitizer
     ) {}
 
   ngOnInit(): void {
@@ -46,6 +51,7 @@ export class CreatePageComponent implements OnInit {
     this.userService.getRoles().subscribe(
       (res) => {
         this.roles = res;
+        console.log(this.dataUser);
          if (this.dataUser) {
           this.initFormEdit();
         }
@@ -58,11 +64,16 @@ export class CreatePageComponent implements OnInit {
     );
   }
 
-  createUser (user: CreateUser) {
-    this.userService.createUser(user).subscribe(
+  async createUser () {
+    if (this.photo)
+      await this.uploadPhotoProfile(this.formCreatePerson.value);
+
+    const value: CreateUser = this.formCreatePerson.value;
+
+    this.userService.createUser(value).subscribe(
       (res) => {
-        this.toastr.success('Usario correctamente creado');
-        this.router.navigate(['/person/detail', res.id]);
+          this.toastr.success('Usario correctamente creado');
+          this.router.navigate(['/person/detail', res.id]);
       },
       (error) => {
         error.error.message.map((msg:string) =>
@@ -71,6 +82,24 @@ export class CreatePageComponent implements OnInit {
       }
     );
   }
+
+  uploadPhotoProfile = (user: CreateUser) => new Promise((resolve, reject) => {
+    const formPhoto = new FormData();
+    formPhoto.append('file', this.photo, `${user.nit}.png`)
+    this.userService.uploadPhotoUser(formPhoto).subscribe(
+      (res) => {
+        this.formCreatePerson.setValue({
+          ...this.formCreatePerson.value,
+          picture: res.route
+        });
+        // console.log(res.route);
+        resolve(res)
+      },
+      (error) => {
+        reject(error)
+      }
+    );
+  })
 
   initFormParent(): void {
     this.formCreatePerson = new FormGroup(this.formGroupinitial);
@@ -92,12 +121,18 @@ export class CreatePageComponent implements OnInit {
       role: this.dataUser.role.id,
       phone1: this.dataUser.phone1,
       address: this.dataUser.address,
-      bornDate: this.dataUser.bornDate.split('T')[0]
+      bornDate: this.dataUser.bornDate.split('T')[0],
+      picture: this.dataUser.picture
     });
   };
 
-  updateUser(userForm: CreateUser) {
-    this.userService.editUser(this.dataUser.id, userForm).subscribe(
+  async updateUser() {
+    if (this.photo)
+      await this.uploadPhotoProfile(this.formCreatePerson.value);
+
+    const value: CreateUser = this.formCreatePerson.value;
+
+    this.userService.editUser(this.dataUser.id, value).subscribe(
       (res) => {
         this.toastr.success('Usuario editado correctamente');
         this.userReturn.emit(res);
@@ -110,15 +145,48 @@ export class CreatePageComponent implements OnInit {
     );
   }
 
+  handleGetPhoto(event: any) {
+    const image = event.target.files[0]
+    this.photo = image;
+    this.extraerImagen64(image).then((res: any) => {
+      this.preview = res.base;
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  extraerImagen64 = async ($event: any) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      return new Promise((resolve, reject) => {
+        reader.onload = () => {
+          resolve({
+            base: reader.result
+          });
+        };
+        reader.onerror = error => {
+          resolve({
+            base: null
+          });
+        };
+      });
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
+
   onSubmit(event: Event): void {
     this.pushSubmit = true;
     event.preventDefault();
-    const value: CreateUser = this.formCreatePerson.value;
     if (this.formCreatePerson.valid) {
       if (this.dataUser) {
-        this.updateUser(value);
+        this.updateUser();
       } else {
-        this.createUser(value);
+        this.createUser();
       }
     }
   }

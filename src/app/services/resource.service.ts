@@ -91,8 +91,6 @@ export class ResourceService {
 
   public changeResourceStatus (id: string, status: 1 | 0): Observable<any> {
 
-    console.log('entre x3');
-
     return this.http.put<any>(`${this.API_HARDSOFT}resources/${id}`, {
       isAssigned: status
     } ,{
@@ -102,8 +100,8 @@ export class ResourceService {
     })
   }
 
-  public getAllResources (): Observable<Resources[]> {
-    return this.http.get<Resources[]>(`${this.API_HARDSOFT}resources` ,{
+  public getAllResources (onlyActive?: boolean): Observable<Resources[]> {
+    return this.http.get<Resources[]>(`${this.API_HARDSOFT}resources?${onlyActive && `active=${onlyActive}`}` ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }

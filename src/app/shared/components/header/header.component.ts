@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { SharedServiceService } from 'src/app/shared-service.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class HeaderComponent implements OnInit {
 
   openProfileMenu: boolean = false;
-  constructor(private cookieService: CookieService, private router: Router) { }
+  @Output() sidebarStatus = new EventEmitter<boolean>();
+  constructor(private cookieService: CookieService,
+    private router: Router,
+    ) { }
 
   public userName = this.cookieService.get('userName')
   public roleName = this.cookieService.get('roleName');
@@ -19,6 +23,10 @@ export class HeaderComponent implements OnInit {
 
   onShowHideMenu ():void {
     this.openProfileMenu = !this.openProfileMenu;
+  }
+
+  showSidebar(): void {
+    this.sidebarStatus.emit(true);
   }
 
   logOut():void {

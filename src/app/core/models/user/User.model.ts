@@ -10,7 +10,8 @@ export interface User {
   phone2: string,
   address: string,
   bornDate: string
-  role: Rol
+  role: Rol,
+  picture: string
 }
 
 export interface CreateUser extends Omit<User, 'id' | 'create_at' | 'update_at' > {

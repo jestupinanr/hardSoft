@@ -12,6 +12,18 @@
       color: white;
     }
 
+    .rounded-full-profile {
+      border-radius: 100%;
+      width: 100px;
+      height: 100px;
+    }
+
+    .itens-center {
+      display: flex;
+      justify-content: center;
+      justify-items: center
+    }
+
     .pencil{
       position: absolute;
       right: 0;

@@ -20,8 +20,11 @@
         <span class="letter-filter">{{arrayFiltered.letter}}</span>
         <div *ngFor="let item of arrayFiltered.user">
           <div class="item-search" (click)="value && hanldeRedirect(item)">
-            <div class="icon-search">
+            <div class="icon-search" *ngIf='!item.picture'>
               {{item.name.slice(0, 1)}}
+            </div>
+            <div class="icon-search" *ngIf='item.picture'>
+              <img [src]="'http://localhost:3000'+ item.picture" class="rounded-image-profile"/>
             </div>
             <div class="information-search">
               <span class="information-col">{{item.name}} {{item.lastName}}</span>
