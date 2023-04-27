@@ -52,21 +52,23 @@
         justify-content: space-between;
         gap: 4rem;
         display: flex;
+        
       }
       .form-group{
         width: 100%;
-        margin-top: 5%;
+        margin-top: 1rem;
       }
       @media screen and (min-width: 900px) {
         width: 100%;
-        margin: 0;
+        margin: 1rem;
+        margin-top: 0;
       }
     }
     .group-form-half{
       width: 100%;
       @media screen and (min-width: 900px) {
         display: flex;
-        width: 50%;
+        width: 100%;
       justify-content: space-between;
       gap: 3rem;
       }
