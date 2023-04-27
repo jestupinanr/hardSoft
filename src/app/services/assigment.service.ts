@@ -31,7 +31,10 @@ export class AssigmentService {
 
   public createAssigment (createAssigment: createrAssigment): Observable<Assigment> {
     this.resourceService.changeResourceStatus(createAssigment.resource, 1);
-    return this.http.post<Assigment>(`${this.API_HARDSOFT}assigment`, createAssigment ,{
+    const copyCreateAssigment = {...createAssigment}
+    if (copyCreateAssigment.returnDate === "")
+      delete copyCreateAssigment.returnDate
+    return this.http.post<Assigment>(`${this.API_HARDSOFT}assigment`, copyCreateAssigment ,{
       headers: {
         Authorization: `Bearer ${this.cookieService.get('token')}`
       }

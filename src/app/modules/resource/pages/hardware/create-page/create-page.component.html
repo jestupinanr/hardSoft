@@ -20,7 +20,7 @@
       <div class="form-group">
         <label class="label-form"> Estado equipo  </label>
         <select class="input-text-form" type="text" formControlName="status">
-          <option value="" disabled selected hidden>Ingrese el tipo del producto</option>
+          <option value="" disabled selected hidden>Ingrese el estado del producto</option>
           <option *ngFor="let item of status" [value]="item.id">{{item.name}}</option>
         </select>
         <div *ngIf="formCreateHardware.controls['status'].invalid && pushSubmit" class="alert">
